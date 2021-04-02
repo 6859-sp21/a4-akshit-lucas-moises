@@ -1,6 +1,13 @@
 
 # A4 preprocessing code
 library(tidyverse)
+library(srvyr) 
+
+# to do
+# - set income threshold (right now shows mean of all households in data)
+# - rescale expenditure for some items to account for varying recall period (some are 2 weeks, some are 1 month - see questionnaire)
+# - replace codes for consumption items with actual descriptions (CO01 == "milk" or whatever)
+# - categorize items into groups
 
 # set directory
 setwd("~/Documents/04_Master/10_Courses/29_Data Visualization/a4-akshit-lucas-moises/")
@@ -18,30 +25,29 @@ df <- df %>%
 
 # create summary (mean for each consumption item)
 df <- df %>%
-  gather("policy","support", -c(WT))
+  gather("consumption_item","expenditure", -c(WT,STATEID, DISTRICT))
+
+# rescale values based on recall period (e.g., make consistent to two weeks)
+# ...
+
+# create means using survey weights
+df$expenditure <-  as.numeric(df$expenditure)
+df <- df %>%
+  as_survey_design(weights = c(WT)) %>%
+  group_by(consumption_item) %>%
+  summarize(n = survey_mean(expenditure, na.rm = T, vartype = "ci"))
+df <-  rename(df, mean = n)
+df <- select(df, -n_low)
+df <- select(df, -n_upp)
+
+# replace consumption item codes with labels
+# ...
+
+# categorize items into groups
+# ...
+
+# export data
+write.csv(df,"01_data/02_household data (consumption)/clean_sonsumption_data.csv", row.names = FALSE)
 
 
 
-# Create summary data of control group
-df_pp_c <- df_pp %>%
-  select(c(final_weight,treatment,starts_with("pp_"))) %>%
-  gather("policy","support", -c(final_weight,treatment))
-
-df_pp_c <- df_pp_c %>%
-  filter(treatment == 0) %>%
-  filter(policy != "pp_marketpols") %>%
-  filter(policy != "pp_remaining") %>%
-  as_survey_design(weights = c(final_weight)) %>%
-  group_by(policy) %>%
-  summarize(n = survey_mean(support, na.rm = T, vartype = "ci"))
-
-
-# reshape
-
-
-df %>%
-  gather("policy","support", -c(final_weight,treatment))
-
-
-
- 
