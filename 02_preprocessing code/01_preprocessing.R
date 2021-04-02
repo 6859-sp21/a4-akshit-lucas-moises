@@ -4,10 +4,11 @@ library(tidyverse)
 library(srvyr) 
 
 # to do
-# - set income threshold (right now shows mean of all households in data)
-# - rescale expenditure for some items to account for varying recall period (some are 2 weeks, some are 1 month - see questionnaire)
-# - replace codes for consumption items with actual descriptions (CO01 == "milk" or whatever)
-# - categorize items into groups
+# - categorize consumption items into groups
+# - set income threshold in filtering (right now shows mean of all households in data)
+# - rescale expenditure value for some items to account for varying recall period (some are 2 weeks, some are 1 month - see questionnaire)
+# - replace codes for consumption items with actual descriptions (CO01 = "milk" or whatever)
+# - investigate why some consumptions items are zero
 
 # set directory
 setwd("~/Documents/04_Master/10_Courses/29_Data Visualization/a4-akshit-lucas-moises/")
