@@ -11,25 +11,71 @@
                 height: 100%;
             }
             div.left {
-                width: 30%;
+                width: 45%;
                 float: left;
-                background-color: green;
+                /* background-color: #dbffe5; */
             }
             div.right {
-                width: 70%;
+                width: 55%;
                 float: right;
-                background-color: blue;
+                /* background-color: #dbeeff; */
+            }
+
+            .column-center {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .row-center {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
             }
         </style>
     </head>
     <body>
         <div class="outer">
-            <div class="content left"></div>
+            <div class="content left">
+                <h1> How would you allocate $1 ?</h1>
+                <div>
+                    <label for="category_1" 
+                            style="display: inline-block; width: 140px; text-align: left">
+                            category_1 = <span id="category_1-value">…</span>  %
+                    </label>
+                    <input type="range" min="0" max="100" id="category_1">
+                </div>
+                
+                <div>
+                    <label for="category_2" 
+                            style="display: inline-block; width: 140px; text-align: left">
+                            category_2 = <span id="category_2-value">…</span> %
+                    </label>
+                    <input type="range" min="0" max="100" id="category_2">
+                </div>
+
+                <div>
+                    <label for="category_3" 
+                            style="display: inline-block; width: 140px; text-align: left">
+                            category_3 = <span id="category_3-value">…</span> %
+                    </label>
+                    <input type="range" min="0" max="100" id="category_3">
+                </div>
+
+                <h1>Does not hadd up to 100%!</h1>
+
+            </div>
             <div class="content right"></div>
         </div>
     </body>
+    
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="script-left-interaction.js"></script>
-    <script type="text/javascript" src="script-right-visualization.js"></script>
+
+    <script type="text/javascript" src="script-right-visualizations.js"></script>
+    <script src="https://d3js.org/d3-hierarchy.v2.min.js"></script>
+    
     <script type="text/javascript" src="script-right-expression.js"></script>
 </html>
