@@ -6,5 +6,5 @@
 
 # Web Server Starter
 ```sh
-python -m SimpleHttpServer 8000
+python -m SimpleHTTPServer 8000
 ```
