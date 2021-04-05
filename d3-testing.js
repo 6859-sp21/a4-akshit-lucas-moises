@@ -1,4 +1,3 @@
-// data = FileAttachment("flare-2.json").json()
 
 data = {
     name: "root",
@@ -29,6 +28,7 @@ data = {
 
 }
 
+
 partition = data => {
     const root = d3.hierarchy(data)
         .sum(d => d.value)
@@ -38,18 +38,18 @@ partition = data => {
       (root);
   }
 
-var randomColor = () => Math.floor(Math.random()*16777215).toString(16);
+color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1))
 
 format = d3.format(",d")
-width = 932
-radius = width / 6
-arc = d3.svg.arc()
+width = 200
+r = width / 10
+arc = d3.arc()
     .startAngle(d => d.x0)
     .endAngle(d => d.x1)
     .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
-    .padRadius(radius * 1.5)
-    .innerRadius(d => d.y0 * radius)
-    .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1))
+    .padRadius(r * 1.5)
+    .innerRadius(d => d.y0 * r)
+    .outerRadius(d => Math.max(d.y0 * r, d.y1 * r - 1))
 
 
 
@@ -58,12 +58,10 @@ const chart = () => {
   
     root.each(d => d.current = d);
 
-    const svg = d3.select("body")
+    const svg = d3.select("#right")
         .append("svg")
         .attr("viewBox", [0, 0, width, width])
-        .style("font", "10px sans-serif")
-        .style("border", "solid black 4px")
-        ;
+        .style("font", "10px sans-serif");
   
     const g = svg.append("g")
         .attr("transform", `translate(${width / 2},${width / 2})`);
@@ -72,7 +70,7 @@ const chart = () => {
       .selectAll("path")
       .data(root.descendants().slice(1))
       .join("path")
-        .attr("fill", d => { while (d.depth > 1) d = d.parent; return randomColor; })
+        .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
         .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
         .attr("d", d => arc(d.current));
   
@@ -97,7 +95,7 @@ const chart = () => {
   
     const parent = g.append("circle")
         .datum(root)
-        .attr("r", radius)
+        .attr("r", r)
         .attr("fill", "none")
         .attr("pointer-events", "all")
         .on("click", clicked);
@@ -145,7 +143,7 @@ const chart = () => {
   
     function labelTransform(d) {
       const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
-      const y = (d.y0 + d.y1) / 2 * radius;
+      const y = (d.y0 + d.y1) / 2 * r;
       return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
     }
   

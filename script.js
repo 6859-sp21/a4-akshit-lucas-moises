@@ -1,3 +1,5 @@
+
+
 // GLOBAL VARIABLES
 const categories = [
     "Food",
@@ -13,7 +15,6 @@ var userInputData = {};
 var consumptionData = {};
 var width = 1000;
 var height = 600;
-const radius = 100;
 
 // SET INITIAL (NULL) VALUES FOR DATA OBJECTS
 const getEmptyDataObj = function() {
@@ -178,6 +179,7 @@ const LeftInterraction = () => {
     }
 
     that.showCountryVis = () => {
+
         d3.select("#right")
             .append("pre")
             .attr("id", 'country-viz')
