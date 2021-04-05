@@ -67,9 +67,12 @@ const loadFile = function(filename) {
         });
     });
 }
+
 loadFile("datafile.csv")
     .then(
-        (data) => {consumptionData = csv2JSON(data);}, 
+        (data) => {
+            consumptionData = csv2JSON(data);
+        }, 
         (error) => {console.error("LOAD_FILE_ERROR")});
 
 // LEFT INTERCTION
@@ -139,7 +142,6 @@ const LeftInterraction = () => {
 
         if (!that.hide) {
             that.updateUserVis();
-            that.updateCountryVis();
         }
     }
 
@@ -159,13 +161,8 @@ const LeftInterraction = () => {
         d3.select("#right")
             .append("p")
             .attr("id", 'country-viz')
-            .text(`Country distribution will go here, Food: ${that.food}, Leisure: ${that.leisure}, Household: ${that.household}, Services: ${that.services}, Housing: ${that.housing}, Taxes: ${that.taxes}, Luxury: ${that.luxury}, Products: ${that.products}`);
+            .text(`Country distribution will go here`);
 
-    }
-
-    that.updateCountryVis = () => {
-        d3.select("#country-viz")
-            .text(`Country distribution will go here, Food: ${that.food}, Leisure: ${that.leisure}, Household: ${that.household}, Services: ${that.services}, Housing: ${that.housing}, Taxes: ${that.taxes}, Luxury: ${that.luxury}, Products: ${that.products}`);
     }
 
     return that
