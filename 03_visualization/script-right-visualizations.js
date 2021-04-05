@@ -29,18 +29,6 @@ data = {
 
 }
 
-const Visualization = () => {
-
-
-  that = {}
-
-  that.update = () => {
-
-  }
-
-
-}
-
 partition = data => {
     const root = d3.hierarchy(data)
         .sum(d => d.value)
