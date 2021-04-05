@@ -1,6 +1,4 @@
-
 // data = FileAttachment("flare-2.json").json()
-
 
 data = {
     name: "root",
@@ -28,6 +26,18 @@ data = {
             value: 25
         }
     ]
+
+}
+
+const Visualization = () => {
+
+
+  that = {}
+
+  that.update = () => {
+
+  }
+
 
 }
 

@@ -34,6 +34,11 @@
                 justify-content: center;
                 flex-direction: column;
             }
+            .label {
+                display: inline-block; 
+                width: 160px; 
+                text-align: left
+            }
         </style>
     </head>
     <body>
@@ -41,33 +46,30 @@
             <div class="content left">
                 <h1> How would you allocate $1 ?</h1>
                 <div>
-                    <label for="category_1" 
-                            style="display: inline-block; width: 140px; text-align: left">
-                            category_1 = <span id="category_1-value">…</span>  %
+                    <label for="food" class="label">
+                            Food = <span id="food-value">...</span>  %
                     </label>
-                    <input type="range" min="0" max="100" id="category_1">
+                    <input type="range" min="0" max="100" id="food">
                 </div>
                 
                 <div>
-                    <label for="category_2" 
-                            style="display: inline-block; width: 140px; text-align: left">
-                            category_2 = <span id="category_2-value">…</span> %
+                    <label for="leisure" class="label">
+                            Leisure = <span id="leisure-value">...</span> %
                     </label>
-                    <input type="range" min="0" max="100" id="category_2">
+                    <input type="range" min="0" max="100" id="leisure">
                 </div>
 
                 <div>
-                    <label for="category_3" 
-                            style="display: inline-block; width: 140px; text-align: left">
-                            category_3 = <span id="category_3-value">…</span> %
+                    <label for="consumables" class="label">
+                            Consumables = <span id="consumables-value">...</span> %
                     </label>
-                    <input type="range" min="0" max="100" id="category_3">
+                    <input type="range" min="0" max="100" id="consumables">
                 </div>
 
-                <h1>Does not hadd up to 100%!</h1>
+                <h1 id="message">Values do not sum to 100% !</h1>
 
             </div>
-            <div class="content right"></div>
+            <div id='right' class="content right"></div>
         </div>
     </body>
     
@@ -75,7 +77,6 @@
     <script type="text/javascript" src="script-left-interaction.js"></script>
 
     <script type="text/javascript" src="script-right-visualizations.js"></script>
-    <script src="https://d3js.org/d3-hierarchy.v2.min.js"></script>
     
     <script type="text/javascript" src="script-right-expression.js"></script>
 </html>
