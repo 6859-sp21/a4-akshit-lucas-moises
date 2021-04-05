@@ -70,7 +70,8 @@ const loadFile = function(filename) {
 loadFile("datafile.csv")
     .then(
         (data) => {consumptionData = csv2JSON(data);}, 
-        (error) => {console.error("LOAD_FILE_ERROR")});
+        (error) => {console.error(`LOAD_FILE_ERROR: ${error}`)}
+    );
 
 // LEFT INTERCTION
 const LeftInterraction = () => {
