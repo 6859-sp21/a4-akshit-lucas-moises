@@ -1,6 +1,57 @@
+// GLOBAL VARIABLES
+const categories = [
+    "Food",
+    "Leisure",
+    "Household",
+    "Services",
+    "Housing",
+    "Taxes & Fees",
+    "Luxury",
+    "Products"
+];
+var userInputData = [];
+var consumptionData = {};
 var width = 1000;
 var height = 600;
+const radius = 100;
 
+// LOAD + FORMAT DATA
+const csv2JSON = function(data){
+    
+    for (var i=0; i<data.length; i++) {
+
+        var name = data[i]["variable"];
+        var value = data[i]["mean"];
+        var parent1 = data[i]["category_1"];
+        // var parent2 = data[i]["category_2"];
+
+        var dataObj = {
+            "name": name,
+            "value" :  value
+        };
+
+        if (consumptionData[parent1]) {
+            consumptionData[parent1].push(dataObj);
+        } else {
+            consumptionData[parent1] = [dataObj];
+        }
+    }
+}
+const loadFile = function(filename) {
+    return new Promise(function(resolve, reject) {
+        d3.csv(filename, function(data) {
+            if (data) { 
+                resolve(data);
+            }
+            else reject();
+        });
+    });
+}
+loadFile("datafile.csv")
+    .then(csv2JSON, () => {console.error("LOAD_FILE_ERROR")});
+
+
+// LEFT INTERCTION
 const LeftInterraction = () => {
 
     that = {}
