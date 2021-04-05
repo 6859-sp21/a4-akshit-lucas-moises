@@ -79,24 +79,47 @@ const LeftInterraction = () => {
 
     // category variables
     that.food = 0
-    that.consumables = 0
     that.leisure = 0
+    that.household = 0
+    that.services = 0
+    that.housing = 0
+    that.taxes = 0
+    that.luxury = 0
+    that.products = 0
     
     that.hide = true
 
     that.update = () => {
         // adjust the text on the range slider
-        d3.select("#food-value").text(that.food);
-        d3.select("#food").property("value", that.food);
+        d3.select("#Food-value").text(that.food);
+        d3.select("#Food").property("value", that.food);
 
-        d3.select("#consumables-value").text(that.consumables);
-        d3.select("#consumables").property("value", that.consumables);
+        d3.select("#Leisure-value").text(that.leisure);
+        d3.select("#Leisure").property("value", that.leisure);
 
-        d3.select("#leisure-value").text(that.leisure);
-        d3.select("#leisure").property("value", that.leisure);
+        d3.select("#Household-value").text(that.household);
+        d3.select("#Household").property("value", that.household);
+
+        d3.select("#Services-value").text(that.services);
+        d3.select("#Services").property("value", that.services);
+
+        d3.select("#Housing-value").text(that.housing);
+        d3.select("#Housing").property("value", that.housing);
+
+        d3.select("#Taxes-value").text(that.taxes);
+        d3.select("#Taxes").property("value", that.taxes);
+
+        d3.select("#Luxury-value").text(that.luxury);
+        d3.select("#Luxury").property("value", that.luxury);
+
+        d3.select("#Products-value").text(that.products);
+        d3.select("#Products").property("value", that.products);
+
+
+        let sum = that.food + that.leisure + that.household + that.services + that.housing + that.taxes + that.luxury + that.products
 
         // change message based on sum of values
-        if (that.food + that.consumables + that.leisure == 100){
+        if (sum == 100){
             d3.select("#message").text('Values add to 100% !');
             d3.select("#message").property("value", 'Values add to 100% !');
             if (that.hide) {
@@ -105,13 +128,13 @@ const LeftInterraction = () => {
                 that.hide = false
             }
         }
-        else if(that.food + that.consumables + that.leisure > 100){
-            d3.select("#message").text('Values are > 100% !');
-            d3.select("#message").property("value", 'Values are > 100% !');
+        else if(sum > 100){
+            d3.select("#message").text(`Values are > 100%, ${sum}%`);
+            d3.select("#message").property("value", `Values are > 100%, ${sum}%`);
         }
-        else if(that.food + that.consumables + that.leisure < 100){
-            d3.select("#message").text('Values are < 100% !');
-            d3.select("#message").property("value", 'Values are < 100% !');
+        else if(sum < 100){
+            d3.select("#message").text(`Values are < 100%, ${sum}%`);
+            d3.select("#message").property("value", `Values are < 100%, ${sum}%`);
         }
 
         if (!that.hide) {
@@ -124,25 +147,25 @@ const LeftInterraction = () => {
         d3.select("#right")
             .append("p")
             .attr("id", 'user-viz')
-            .text(`User distribution will go here, Food: ${that.food}, Consumables: ${that.consumables}, Leisure: ${that.leisure}`);
+            .text(`User distribution will go here, Food: ${that.food}, Leisure: ${that.leisure}, Household: ${that.household}, Services: ${that.services}, Housing: ${that.housing}, Taxes: ${that.taxes}, Luxury: ${that.luxury}, Products: ${that.products}`);
 
     }
     that.updateUserVis = () => {
         d3.select("#user-viz")
-            .text(`User distribution will go here, Food: ${that.food}, Consumables: ${that.consumables}, Leisure: ${that.leisure}`);
+            .text(`User distribution will go here, Food: ${that.food}, Leisure: ${that.leisure}, Household: ${that.household}, Services: ${that.services}, Housing: ${that.housing}, Taxes: ${that.taxes}, Luxury: ${that.luxury}, Products: ${that.products}`);
     }
 
     that.showCountryVis = () => {
         d3.select("#right")
             .append("p")
             .attr("id", 'country-viz')
-            .text(`Country distribution will go here, Food: ${that.food}, Consumables: ${that.consumables}, Leisure: ${that.leisure}`);
+            .text(`Country distribution will go here, Food: ${that.food}, Leisure: ${that.leisure}, Household: ${that.household}, Services: ${that.services}, Housing: ${that.housing}, Taxes: ${that.taxes}, Luxury: ${that.luxury}, Products: ${that.products}`);
 
     }
 
     that.updateCountryVis = () => {
         d3.select("#country-viz")
-            .text(`Country distribution will go here, Food: ${that.food}, Consumables: ${that.consumables}, Leisure: ${that.leisure}`);
+            .text(`Country distribution will go here, Food: ${that.food}, Leisure: ${that.leisure}, Household: ${that.household}, Services: ${that.services}, Housing: ${that.housing}, Taxes: ${that.taxes}, Luxury: ${that.luxury}, Products: ${that.products}`);
     }
 
     return that
@@ -151,20 +174,46 @@ const LeftInterraction = () => {
 var leftInterraction = LeftInterraction()
 
 // click listeners
-d3.select("#food").on("input", function() {
+d3.select("#Food").on("input", function() {
     leftInterraction.food = +this.value
     leftInterraction.update()
 });
 
-d3.select("#leisure").on("input", function() {
+d3.select("#Leisure").on("input", function() {
     leftInterraction.leisure = +this.value
     leftInterraction.update()
 });
 
-d3.select("#consumables").on("input", function() {
-    leftInterraction.consumables = +this.value
+d3.select("#Household").on("input", function() {
+    leftInterraction.household = +this.value
     leftInterraction.update()
 });
+
+d3.select("#Services").on("input", function() {
+    leftInterraction.services = +this.value
+    leftInterraction.update()
+});
+
+d3.select("#Housing").on("input", function() {
+    leftInterraction.housing = +this.value
+    leftInterraction.update()
+});
+
+d3.select("#Taxes").on("input", function() {
+    leftInterraction.taxes = +this.value
+    leftInterraction.update()
+});
+
+d3.select("#Luxury").on("input", function() {
+    leftInterraction.luxury = +this.value
+    leftInterraction.update()
+});
+
+d3.select("#Products").on("input", function() {
+    leftInterraction.products = +this.value
+    leftInterraction.update()
+});
+
 
 leftInterraction.update();
 
