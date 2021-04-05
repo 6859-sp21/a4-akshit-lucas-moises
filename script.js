@@ -9,15 +9,31 @@ const categories = [
     "Luxury",
     "Products"
 ];
-var userInputData = [];
+var userInputData = {};
 var consumptionData = {};
 var width = 1000;
 var height = 600;
 const radius = 100;
 
+// SET INITIAL (NULL) VALUES FOR DATA OBJECTS
+const getEmptyDataObj = function() {
+    var dataObj = { "name": "root", "children": []};
+    for (var i=0; i<categories.length; i++) {
+        categoryName = categories[i];
+        dataObj.children.push({
+            "name": categoryName,
+            "children": [],
+            "value": null
+        });
+    }
+    return dataObj;
+}
+userInputData = getEmptyDataObj();
+
 // LOAD + FORMAT DATA
 const csv2JSON = function(data){
-    
+
+    var jsonData = getEmptyDataObj();
     for (var i=0; i<data.length; i++) {
 
         var name = data[i]["variable"];
@@ -30,12 +46,16 @@ const csv2JSON = function(data){
             "value" :  value
         };
 
-        if (consumptionData[parent1]) {
-            consumptionData[parent1].push(dataObj);
-        } else {
-            consumptionData[parent1] = [dataObj];
+        for (var j=0; j<jsonData.children.length; j++) {
+            var category = jsonData.children[j];
+            var categoryName = category.name;
+            if (categoryName === parent1) {
+                category.children.push(dataObj);
+                break;
+            }
         }
     }
+    return jsonData;
 }
 const loadFile = function(filename) {
     return new Promise(function(resolve, reject) {
@@ -48,8 +68,9 @@ const loadFile = function(filename) {
     });
 }
 loadFile("datafile.csv")
-    .then(csv2JSON, () => {console.error("LOAD_FILE_ERROR")});
-
+    .then(
+        (data) => {consumptionData = csv2JSON(data);}, 
+        (error) => {console.error("LOAD_FILE_ERROR")});
 
 // LEFT INTERCTION
 const LeftInterraction = () => {
