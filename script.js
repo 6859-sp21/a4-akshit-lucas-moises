@@ -5,6 +5,7 @@ const LeftInterraction = () => {
 
     that = {}
 
+    // category variables
     that.food = 0
     that.consumables = 0
     that.leisure = 0
@@ -22,7 +23,7 @@ const LeftInterraction = () => {
         d3.select("#leisure-value").text(that.leisure);
         d3.select("#leisure").property("value", that.leisure);
 
-
+        // change message based on sum of values
         if (that.food + that.consumables + that.leisure == 100){
             d3.select("#message").text('Values add to 100% !');
             d3.select("#message").property("value", 'Values add to 100% !');
@@ -77,8 +78,7 @@ const LeftInterraction = () => {
 
 var leftInterraction = LeftInterraction()
 
-
-
+// click listeners
 d3.select("#food").on("input", function() {
     leftInterraction.food = +this.value
     leftInterraction.update()
