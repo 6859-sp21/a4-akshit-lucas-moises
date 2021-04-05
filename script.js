@@ -89,6 +89,7 @@ const LeftInterraction = () => {
     that.taxes = 0
     that.luxury = 0
     that.products = 0
+    that.consumptionData = {}
     
     that.hide = true
 
@@ -145,23 +146,43 @@ const LeftInterraction = () => {
         }
     }
 
+    that.getUserData = () => {
+        var dataObj = { "name": "root", "children": []};
+        for (var i=0; i<categories.length; i++) {
+            categoryName = categories[i];
+            categoryData = categoryName.toLowerCase()
+            if (categoryName == 'Taxes & Fees'){
+                categoryData = 'taxes'
+            }
+            dataObj.children.push({
+                "name": categoryName,
+                "value": that[categoryData]
+            });
+        }
+        return dataObj;
+    }
+
     that.showUserVis = () => {
+
+        let userData = that.getUserData()
         d3.select("#right")
-            .append("p")
+            .append("pre")
             .attr("id", 'user-viz')
-            .text(`User distribution will go here, Food: ${that.food}, Leisure: ${that.leisure}, Household: ${that.household}, Services: ${that.services}, Housing: ${that.housing}, Taxes: ${that.taxes}, Luxury: ${that.luxury}, Products: ${that.products}`);
+            .text(JSON.stringify(userData, null, 1));
 
     }
     that.updateUserVis = () => {
+        let userData = that.getUserData()
         d3.select("#user-viz")
-            .text(`User distribution will go here, Food: ${that.food}, Leisure: ${that.leisure}, Household: ${that.household}, Services: ${that.services}, Housing: ${that.housing}, Taxes: ${that.taxes}, Luxury: ${that.luxury}, Products: ${that.products}`);
+            .text(JSON.stringify(userData, null, 1));
     }
 
     that.showCountryVis = () => {
         d3.select("#right")
-            .append("p")
+            .append("pre")
             .attr("id", 'country-viz')
-            .text(`Country distribution will go here`);
+            .text(JSON.stringify(consumptionData, null, 1))
+            .style('width: 40vw;');
 
     }
 
