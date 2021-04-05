@@ -11,14 +11,16 @@
                 height: 100%;
             }
             div.left {
-                width: 45%;
+                width: 35%;
                 float: left;
-                /* background-color: #dbffe5; */
+                background-color: #dbffe5;
+                padding: 32px;
+                border-radius: 32px;
+                box-shadow: 0px 0px 12px 6px #eee;
             }
             div.right {
-                width: 55%;
+                width: 50%;
                 float: right;
-                /* background-color: #dbeeff; */
             }
 
             .column-center {
@@ -46,24 +48,59 @@
             <div class="content left">
                 <h1> How would you allocate $1 ?</h1>
                 <div>
-                    <label for="food" class="label">
-                            Food = <span id="food-value">...</span>  %
+                    <label for="Food" class="label">
+                            Food = <span id="Food-value">...</span>  %
                     </label>
-                    <input type="range" min="0" max="100" id="food">
+                    <input type="range" min="0" max="100" id="Food">
                 </div>
                 
                 <div>
-                    <label for="leisure" class="label">
-                            Leisure = <span id="leisure-value">...</span> %
+                    <label for="Leisure" class="label">
+                            Leisure = <span id="Leisure-value">...</span> %
                     </label>
-                    <input type="range" min="0" max="100" id="leisure">
+                    <input type="range" min="0" max="100" id="Leisure">
                 </div>
 
                 <div>
-                    <label for="consumables" class="label">
-                            Consumables = <span id="consumables-value">...</span> %
+                    <label for="Household" class="label">
+                            Household = <span id="Household-value">...</span> %
                     </label>
-                    <input type="range" min="0" max="100" id="consumables">
+                    <input type="range" min="0" max="100" id="Household">
+                </div>
+
+                <div>
+                    <label for="Services" class="label">
+                        Services = <span id="Services-value">...</span> %
+                    </label>
+                    <input type="range" min="0" max="100" id="Services">
+                </div>
+
+                <div>
+                    <label for="Housing" class="label">
+                        Housing = <span id="Housing-value">...</span> %
+                    </label>
+                    <input type="range" min="0" max="100" id="Housing">
+                </div>
+
+                <div>
+                    <label for="Taxes" class="label">
+                        Taxes & Fees = <span id="Taxes-value">...</span> %
+                    </label>
+                    <input type="range" min="0" max="100" id="Taxes">
+                </div>
+
+                <div>
+                    <label for="Luxury" class="label">
+                        Luxury = <span id="Luxury-value">...</span> %
+                    </label>
+                    <input type="range" min="0" max="100" id="Luxury">
+                </div>
+
+                <div>
+                    <label for="Products" class="label">
+                        Products = <span id="Products-value">...</span> %
+                    </label>
+                    <input type="range" min="0" max="100" id="Products">
                 </div>
 
                 <h1 id="message">Values do not sum to 100% !</h1>
@@ -73,7 +110,7 @@
         </div>
     </body>
     
-    <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     
     <script type="text/javascript" src="script.js"></script>
     <!-- <script type="text/javascript" src="script-ak.js"></script> -->
