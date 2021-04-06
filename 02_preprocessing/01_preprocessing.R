@@ -5,13 +5,6 @@ library(srvyr)
 library(readr)
 
 
-# to do
-# - categorize consumption items into groups
-# - set income threshold in filtering (right now shows mean of all households in data)
-# - rescale expenditure value for some items to account for varying recall period (some are 2 weeks, some are 1 month - see questionnaire)
-# - replace codes for consumption items with actual descriptions (CO01 = "milk" or whatever)
-# - investigate why some consumptions items are zero
-
 # set directory
 setwd("~/Documents/04_Master/10_Courses/29_Data Visualization/a4-akshit-lucas-moises/")
 
@@ -59,13 +52,13 @@ df <- df %>%
 #summary(df$INTL_EXTR_POOR)
 
 # create income groups or filter below certain income threshold
-# ...
+summary(df$POOR)
+df <- df %>%
+  filter(POOR == "(1) poor 1")
 
 # create summary (mean for each consumption item)
 df <- df %>%
   gather("consumption_item","expenditure", -c(WT, DISTRICT)) # STATEID
-
-
 
 # create means using survey weights
 df$expenditure <-  as.numeric(df$expenditure)
@@ -83,7 +76,7 @@ df <- left_join(df, df_labels)
 
 # rescale values based on recall period (e.g., make consistent to two weeks)
 df <-  df %>% mutate(period_conversion = metric)
-df$period_conversion <- as.numeric(recode(df$period_conversion, spent_in_last_365_days = "0.833333333333333", paid_for_in_last_30_days = "1"))
+df$period_conversion <- as.numeric(recode(df$period_conversion, spent_in_last_365_days = "0.083333333333333333", paid_for_in_last_30_days = "1"))
 df <-  df %>% mutate(mean = mean * period_conversion)
 
 # export data
