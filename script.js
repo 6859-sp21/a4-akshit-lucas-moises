@@ -1,5 +1,4 @@
-
-
+/** DATA */
 // GLOBAL VARIABLES
 const categories = [
     "Food",
@@ -7,14 +6,146 @@ const categories = [
     "Household",
     "Services",
     "Housing",
-    "Taxes & Fees",
+    "Taxes-Fees",
     "Luxury",
     "Products"
 ];
-var userInputData = {};
-var consumptionData = {};
-var width = 1000;
-var height = 1000;
+var consumptionVizData = {};
+
+// FUNCTION: SET INITIAL (NULL) VALUES FOR DATA OBJECTS
+const getEmptyDataObj = function() {
+    var dataObj = { "name": "root", "children": []};
+    for (var i=0; i<categories.length; i++) {
+        categoryName = categories[i];
+        dataObj.children.push({
+            "name": categoryName,
+            "children": [],
+            "value": 0
+        });
+    }
+    return dataObj;
+}
+
+// FUNCTION: FORMAT DATA
+const csv2JSON = function(data){
+    var jsonData = getEmptyDataObj();
+    for (var i=0; i<data.length; i++) {
+
+        var name = data[i]["variable"];
+        var value = data[i]["mean"];
+        var parent1 = data[i]["category_1"];
+        // var parent2 = data[i]["category_2"];
+
+        var dataObj = {
+            "name": name,
+            "value" :  value
+        };
+
+        for (var j=0; j<jsonData.children.length; j++) {
+            var category = jsonData.children[j];
+            var categoryName = category.name;
+            if (categoryName === parent1) {
+                category.children.push(dataObj);
+                break;
+            }
+        }
+    }
+    return jsonData;
+}
+
+/** UI */
+// GENERATE USER CONTROLS
+const generateUserControls = function() {
+    
+    const inputsDiv = d3.select("#user-input");
+    
+    var userInputHtml = "";
+    for (var i=0; i<categories.length; i++) {
+        userInputHtml += `<div>`;
+        userInputHtml += `<label for="${categories[i]}" class="label">`;
+        userInputHtml += `${categories[i]} = <span id="${categories[i]}-value">...</span>  %`;
+        userInputHtml += `</label>`;
+        userInputHtml += `<input type="range" min="0" max="100" id="${categories[i]}">`;
+        userInputHtml += `</div>`;
+    }
+    inputsDiv.html(userInputHtml);
+}
+
+// CLICK LISTENER
+const sliderInputListener = function(categoryName, value) {
+    leftInterraction.data[categoryName] = +value;
+    leftInterraction.update();
+}
+
+// FUNCTION: SHOW VISUALIZATION
+const showVis = function(cssClass, vizData) {
+    d3.selectAll(`.${cssClass}`).remove()
+    SunBurst(vizData, cssClass)
+}
+
+// LEFT INTERCTION
+const LeftInterraction = () => {
+
+    var that = {}
+    
+    // DATA MEMBERS
+    that.hide = true;
+    that.data = {};
+    for (var i=0; i<categories.length; i++) {
+        that.data[categories[i]] = 0;
+    }
+
+    // FUNCTIONS
+    that._updateSliderText = function(labelId, sliderId, value) {
+        d3.select(`#${labelId}`).text(value);
+        d3.select(`#${sliderId}`).property("value", value);
+    };
+
+    that.update = () => {
+
+        // adjust the text on the range slider, and
+        // sum all values
+        var sum = 0;
+        for (var i=0; i<categories.length; i++) {
+            // console.log(`that.data[categories[i]]: ${that.data[categories[i]]}`);
+            that._updateSliderText(`${categories[i]}-value`, `${categories[i]}`, that.data[categories[i]]);
+            // console.log(`that.data[categories[i]]: ${that.data[categories[i]]}`);
+            sum += that.data[categories[i]];
+        }
+
+        // change message based on sum of values
+        d3.select("#message").text(`Total Allocation = ${sum}%`);
+
+        // Show/hide Visualization(s)
+        if (sum == 100){
+            that.hide = false;
+            // TODO: DISABLE INPUTS
+        } else {
+            that.hide = true;
+        }
+
+        if (that.hide) {
+            showVis('user-viz', getEmptyDataObj());
+            showVis('country-viz', getEmptyDataObj());
+        } else {
+            showVis('user-viz', that.getUserData());
+            showVis('country-viz', consumptionVizData);
+        }
+    }
+
+    that.getUserData = () => {
+
+        var dataObj = getEmptyDataObj();
+        for (var i=0; i<dataObj.children.length; i++) {
+            
+            var categoryName = dataObj.children[i].name;
+            dataObj.children[i].value = that.data[categoryName];
+        }
+        return dataObj;
+    }
+
+    return that;
+}
 
 // SUNBURST GRAPH
 const SunBurst = (data, name) => {
@@ -136,233 +267,23 @@ const SunBurst = (data, name) => {
 
 }
 
-// SET INITIAL (NULL) VALUES FOR DATA OBJECTS
-const getEmptyDataObj = function() {
-    var dataObj = { "name": "root", "children": []};
-    for (var i=0; i<categories.length; i++) {
-        categoryName = categories[i];
-        dataObj.children.push({
-            "name": categoryName,
-            "children": [],
-            "value": null
-        });
-    }
-    return dataObj;
+// MAIN
+generateUserControls();
+for (var i=0; i<categories.length; i++) {
+    d3.select(`#${categories[i]}`).on("input", function() {
+        sliderInputListener(this.id, +this.value);
+    })
 }
-userInputData = getEmptyDataObj();
-
-// LOAD + FORMAT DATA
-const csv2JSON = function(data){
-    var jsonData = getEmptyDataObj();
-    for (var i=0; i<data.length; i++) {
-
-        var name = data[i]["variable"];
-        var value = data[i]["mean"];
-        var parent1 = data[i]["category_1"];
-        // var parent2 = data[i]["category_2"];
-
-        var dataObj = {
-            "name": name,
-            "value" :  value
-        };
-
-        for (var j=0; j<jsonData.children.length; j++) {
-            var category = jsonData.children[j];
-            var categoryName = category.name;
-            if (categoryName === parent1) {
-                category.children.push(dataObj);
-                break;
-            }
-        }
-    }
-    return jsonData;
-}
-const loadFile = function(filename) {
-    return new Promise(function(resolve, reject) {
-        d3.csv(filename, function(data) {
-            if (data) { 
-                resolve(data);
-            }
-            else reject();
-        });
-    });
-}
-
-loadFile("datafile.csv")
-    .then(
-        (data) => {
-            consumptionData = csv2JSON(data);
-        }, 
-        (error) => {console.error("LOAD_FILE_ERROR")});
-
-
-// LEFT INTERCTION
-const LeftInterraction = () => {
-
-    that = {}
-
-    // category variables
-    that.food = 0
-    that.leisure = 0
-    that.household = 0
-    that.services = 0
-    that.housing = 0
-    that.taxes = 0
-    that.luxury = 0
-    that.products = 0
-    that.consumptionData = {}
-    
-    that.hide = true
-
-
-    that.update = () => {
-        // adjust the text on the range slider
-        d3.select("#Food-value").text(that.food);
-        d3.select("#Food").property("value", that.food);
-
-        d3.select("#Leisure-value").text(that.leisure);
-        d3.select("#Leisure").property("value", that.leisure);
-
-        d3.select("#Household-value").text(that.household);
-        d3.select("#Household").property("value", that.household);
-
-        d3.select("#Services-value").text(that.services);
-        d3.select("#Services").property("value", that.services);
-
-        d3.select("#Housing-value").text(that.housing);
-        d3.select("#Housing").property("value", that.housing);
-
-        d3.select("#Taxes-value").text(that.taxes);
-        d3.select("#Taxes").property("value", that.taxes);
-
-        d3.select("#Luxury-value").text(that.luxury);
-        d3.select("#Luxury").property("value", that.luxury);
-
-        d3.select("#Products-value").text(that.products);
-        d3.select("#Products").property("value", that.products);
-
-
-        let sum = that.food + that.leisure + that.household + that.services + that.housing + that.taxes + that.luxury + that.products
-
-        // change message based on sum of values
-        if (sum == 100){
-            d3.select("#message").text('Values add to 100% !');
-            d3.select("#message").property("value", 'Values add to 100% !');
-            if (that.hide) {
-                that.showUserVis();
-                that.showCountryVis();
-                that.hide = false
-            }
-        }
-        else if(sum > 100){
-            d3.select("#message").text(`Values are > 100%, ${sum}%`);
-            d3.select("#message").property("value", `Values are > 100%, ${sum}%`);
-            if (that.hide) {
-                that.showUserVis();
-                that.showCountryVis();
-                that.hide = false
-            }
-        }
-        else if(sum < 100){
-            d3.select("#message").text(`Values are < 100%, ${sum}%`);
-            d3.select("#message").property("value", `Values are < 100%, ${sum}%`);
-        }
-
-        if (!that.hide) {
-            that.showUserVis();
-            that.showCountryVis();
-        }
-    }
-
-    that.getUserData = () => {
-        var dataObj = { "name": "root", "children": []};
-        for (var i=0; i<categories.length; i++) {
-            categoryName = categories[i];
-            categoryData = categoryName.toLowerCase()
-            if (categoryName == 'Taxes & Fees'){
-                categoryData = 'taxes'
-            }
-            dataObj.children.push({
-                "name": categoryName,
-                "value": that[categoryData]
-            });
-        }
-        return dataObj;
-    }
-
-    that.showUserVis = () => {
-
-        let userData = that.getUserData()
-        d3.selectAll('.user-viz').remove()
-        SunBurst(userData, 'user-viz')
-
-    }
-
-    that.showCountryVis = () => {
-
-        // TODO consumption data seems to be empty
-        console.log(JSON.stringify(consumptionData))
-        // SunBurst(consumptionData, 'country-viz')
-
-        // placeholder
-        let userData = that.getUserData()
-        d3.selectAll('.country-viz').remove()
-        SunBurst(userData, 'country-viz')
-
-    }
-
-    return that
-}
-
-
 
 var leftInterraction = LeftInterraction()
 
-// CLICK LISTENERS
-d3.select("#Food").on("input", function() {
-    leftInterraction.food = +this.value
-    leftInterraction.update()
-});
-
-d3.select("#Leisure").on("input", function() {
-    leftInterraction.leisure = +this.value
-    leftInterraction.update()
-});
-
-d3.select("#Household").on("input", function() {
-    leftInterraction.household = +this.value
-    leftInterraction.update()
-});
-
-d3.select("#Services").on("input", function() {
-    leftInterraction.services = +this.value
-    leftInterraction.update()
-});
-
-d3.select("#Housing").on("input", function() {
-    leftInterraction.housing = +this.value
-    leftInterraction.update()
-});
-
-d3.select("#Taxes").on("input", function() {
-    leftInterraction.taxes = +this.value
-    leftInterraction.update()
-});
-
-d3.select("#Luxury").on("input", function() {
-    leftInterraction.luxury = +this.value
-    leftInterraction.update()
-});
-
-d3.select("#Products").on("input", function() {
-    leftInterraction.products = +this.value
-    leftInterraction.update()
-});
-
-
-leftInterraction.update();
-
-
-
-
-
+d3.csv("datafile.csv").then(
+    (data) => {
+        consumptionVizData = csv2JSON(data);
+        leftInterraction.update();
+        //
+    }, 
+    (error) => {
+        console.error(`LOAD_FILE_ERROR: ${error}`)
+    }
+);
