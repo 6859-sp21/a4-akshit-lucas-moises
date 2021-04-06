@@ -37,9 +37,11 @@ df <- df %>%
   mutate(COPC_INTL = COPC_INTL / 30.4167) %>%
   mutate(INTL_EXTR_POOR = (COPC_INTL <= 1.90))
 
-hist(df$COPC_INTL)
-summary(df$COPC_INTL)
-summary(df$INTL_EXTR_POOR)
+#hist(df$COPC_INTL)
+#summary(df$COPC)
+#summary(df$COTOTAL)
+#summary(df$COPC_INTL)
+#summary(df$INTL_EXTR_POOR)
 
 # create income groups or filter below certain income threshold
 # ...
@@ -62,7 +64,8 @@ df <- select(df, -n_low)
 df <- select(df, -n_upp)
 
 # replace consumption item codes with labels
-# ...
+df_labels <- read_csv("02_preprocessing/labels.csv")
+df <- left_join(df, df_labels)
 
 # categorize items into groups
 # ...

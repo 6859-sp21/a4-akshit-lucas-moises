@@ -1,0 +1,55 @@
+consumption_item,variable,metric
+CO1X,Rice,paid_for_in_last_30_days
+CO2X,Wheat,paid_for_in_last_30_days
+CO3X,Sugar,paid_for_in_last_30_days
+CO4X,Kerosene,paid_for_in_last_30_days
+CO5X,Other cereals,paid_for_in_last_30_days
+CO6X,Cereal products,paid_for_in_last_30_days
+CO7X,Pulses,paid_for_in_last_30_days
+CO8X,Meat,paid_for_in_last_30_days
+CO9X,Sweeteners,paid_for_in_last_30_days
+CO10X,Edible oil,paid_for_in_last_30_days
+CO11X,Eggs,paid_for_in_last_30_days
+CO12X,Milk,paid_for_in_last_30_days
+CO13X,Milk products,paid_for_in_last_30_days
+CO14X,Vegetables,paid_for_in_last_30_days
+CO15,Salt/spices,paid_for_in_last_30_days
+CO16,Other Food,paid_for_in_last_30_days
+CO17,Processed foods,paid_for_in_last_30_days
+CO18,Paan/tobac/intox,paid_for_in_last_30_days
+CO19,Fruits/nuts,paid_for_in_last_30_days
+CO20,Eating out,paid_for_in_last_30_days
+CO21,HH Fuel,paid_for_in_last_30_days
+CO22,HH Electricity,paid_for_in_last_30_days
+CO23,Entertainment,paid_for_in_last_30_days
+CO24,"Telephone/Mobile, cable/dish, internet",paid_for_in_last_30_days
+CO25,Cosmetics / Toilet articles,paid_for_in_last_30_days
+CO26,Household items,paid_for_in_last_30_days
+CO27,"Soap, detergent/washing powder,�agarbati, insecticide, etc.",paid_for_in_last_30_days
+CO28,Transportation,paid_for_in_last_30_days
+CO29,"Diesel, petrol, CNG, maintenance",paid_for_in_last_30_days
+CO30,House rent / Society charges,paid_for_in_last_30_days
+CO30A,House loan installment,paid_for_in_last_30_days
+CO30B,"Other rent�- appliances, etc.",paid_for_in_last_30_days
+CO31,"Consumer taxes, cesses, and fees",consumed_in_last_30_days
+CO32,Services servants,consumed_in_last_30_days
+CO33,Medical out-patient,consumed_in_last_30_days
+CO34,Medical in-patient,spent_in_last_365_days
+CO35,School,spent_in_last_365_days
+CO36,Private Tuition fees�,spent_in_last_365_days
+CO37,School books,spent_in_last_365_days
+CO38,Clothing/bedding,spent_in_last_365_days
+CO39,Footwear,spent_in_last_365_days
+CO40,Furniture/fixtures,spent_in_last_365_days
+CO41,Crockery/utensils,spent_in_last_365_days
+CO42,HH appliances,spent_in_last_365_days
+CO43,Recreation goods,spent_in_last_365_days
+CO44,Jewellery,spent_in_last_365_days
+CO45,Transport equipment,spent_in_last_365_days
+CO46,Therapeutic appliances,spent_in_last_365_days
+CO47,Personal care & household items,spent_in_last_365_days
+CO48,Other personal,spent_in_last_365_days
+CO49,Repair/maintenance,spent_in_last_365_days
+CO50,Insurance premiums,spent_in_last_365_days
+CO51,Vacations,spent_in_last_365_days
+CO52,Social functions,spent_in_last_365_days
