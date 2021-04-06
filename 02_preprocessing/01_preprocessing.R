@@ -2,6 +2,8 @@
 # A4 preprocessing code
 library(tidyverse)
 library(srvyr) 
+library(readr)
+
 
 # to do
 # - categorize consumption items into groups
@@ -19,7 +21,25 @@ df <-  da36151.0002
 
 # only keep relevant variables (consumption, survey weight, income)
 df <- df %>%
-  select(c(STATEID, DISTRICT, WT),starts_with("CO"))
+  select(c(STATEID, DISTRICT, WT, POOR),starts_with("CO"))
+
+# merge in PPP conversion factor
+df_ppp <- read_csv("02_preprocessing/ppp_converion_factor.csv")
+conversion_factor <- df_ppp %>%
+  filter(TIME == 2011) %>%
+  filter(LOCATION == "IND") %>%
+  select(Value)
+conversion_factor <- pull(conversion_factor[1,1])
+
+# Create daily household per capita in 2011 intl dollar
+df <- df %>%
+  mutate(COPC_INTL = COPC / conversion_factor) %>%
+  mutate(COPC_INTL = COPC_INTL / 30.4167) %>%
+  mutate(INTL_EXTR_POOR = (COPC_INTL <= 1.90))
+
+hist(df$COPC_INTL)
+summary(df$COPC_INTL)
+summary(df$INTL_EXTR_POOR)
 
 # create income groups or filter below certain income threshold
 # ...
