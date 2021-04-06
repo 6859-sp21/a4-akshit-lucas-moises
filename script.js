@@ -107,9 +107,7 @@ const LeftInterraction = () => {
         // sum all values
         var sum = 0;
         for (var i=0; i<categories.length; i++) {
-            // console.log(`that.data[categories[i]]: ${that.data[categories[i]]}`);
             that._updateSliderText(`${categories[i]}-value`, `${categories[i]}`, that.data[categories[i]]);
-            // console.log(`that.data[categories[i]]: ${that.data[categories[i]]}`);
             sum += that.data[categories[i]];
         }
 
@@ -119,7 +117,9 @@ const LeftInterraction = () => {
         // Show/hide Visualization(s)
         if (sum == 100){
             that.hide = false;
-            // TODO: DISABLE INPUTS
+            for (var i=0; i<categories.length; i++) {
+                d3.select(`#${categories[i]}`).attr("disabled", true);
+            }
         } else {
             that.hide = true;
         }
