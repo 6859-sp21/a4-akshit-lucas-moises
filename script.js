@@ -269,7 +269,8 @@ const LeftInterraction = () => {
         }
 
         if (!that.hide) {
-            that.updateUserVis();
+            that.showUserVis();
+            that.showCountryVis();
         }
     }
 
@@ -292,13 +293,9 @@ const LeftInterraction = () => {
     that.showUserVis = () => {
 
         let userData = that.getUserData()
-        SunBurst(userData, 'user-viz')
-
-    }
-    that.updateUserVis = () => {
-        let userData = that.getUserData()
         d3.selectAll('.user-viz').remove()
         SunBurst(userData, 'user-viz')
+
     }
 
     that.showCountryVis = () => {
@@ -309,6 +306,7 @@ const LeftInterraction = () => {
 
         // placeholder
         let userData = that.getUserData()
+        d3.selectAll('.country-viz').remove()
         SunBurst(userData, 'country-viz')
 
     }
