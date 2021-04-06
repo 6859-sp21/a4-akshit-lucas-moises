@@ -42,14 +42,14 @@ conversion_factor <- pull(conversion_factor[1,1])
 # Create daily household per capita in 2011 intl dollar
 df <- df %>%
   mutate(COPC_INTL = COPC / conversion_factor) %>%
-  mutate(COPC_INTL = COPC_INTL / 30.4167) %>%
-  mutate(INTL_EXTR_POOR = (COPC_INTL <= 1.90))
+  mutate(COPC_INTL_DAY = COPC_INTL / 30.4167) %>%
+  mutate(INTL_EXTR_POOR = (COPC_INTL_DAY <= 5.50))
 
-#hist(df$COPC_INTL)
-#summary(df$COPC)
-#summary(df$COTOTAL)
-#summary(df$COPC_INTL)
-#summary(df$INTL_EXTR_POOR)
+summary(df$COPC)
+summary(df$COTOTAL)
+summary(df$COPC_INTL)
+summary(df$COPC_INTL_DAY)
+summary(df$INTL_EXTR_POOR)
 
 # create income groups or filter below certain income threshold
 summary(df$POOR)
@@ -80,8 +80,7 @@ df$period_conversion <- as.numeric(recode(df$period_conversion, spent_in_last_36
 df <-  df %>% mutate(mean = mean * period_conversion)
 
 # export data
-df <- df %>% select(variable, mean, category_1)
+df <- df %>% select(variable, mean, category_1) %>% filter(!is.na(mean))
 write.csv(df,"01_data/02_household data (consumption)/clean_sonsumption_data.csv", row.names = FALSE)
-
 
 
