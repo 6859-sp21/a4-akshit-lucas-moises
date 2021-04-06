@@ -65,8 +65,7 @@ df <- df %>%
 df <- df %>%
   gather("consumption_item","expenditure", -c(WT, DISTRICT)) # STATEID
 
-# rescale values based on recall period (e.g., make consistent to two weeks)
-# ...
+
 
 # create means using survey weights
 df$expenditure <-  as.numeric(df$expenditure)
@@ -82,11 +81,13 @@ df <- select(df, -n_upp)
 df_labels <- read_csv("02_preprocessing/labels.csv")
 df <- left_join(df, df_labels)
 
-
-# categorize items into groups
-# ...
+# rescale values based on recall period (e.g., make consistent to two weeks)
+df <-  df %>% mutate(period_conversion = metric)
+df$period_conversion <- as.numeric(recode(df$period_conversion, spent_in_last_365_days = "0.833333333333333", paid_for_in_last_30_days = "1"))
+df <-  df %>% mutate(mean = mean * period_conversion)
 
 # export data
+df <- df %>% select(variable, mean, category_1)
 write.csv(df,"01_data/02_household data (consumption)/clean_sonsumption_data.csv", row.names = FALSE)
 
 
