@@ -1,12 +1,12 @@
 
-data = {
+info = {
     name: "root",
     children: [
         {
             name: "A", 
             children: [
                 {name: "A.1", value: 10},
-                {name: "A.2", value: 20},
+                {name: "A.2", value: 40},
                 {name: "A.3", value: 10},
                 {name: "A.4", value: 40}
             ]
@@ -29,33 +29,33 @@ data = {
 }
 
 
-partition = data => {
-    const root = d3.hierarchy(data)
-        .sum(d => d.value)
-        .sort((a, b) => b.value - a.value);
-    return d3.partition()
-        .size([2 * Math.PI, root.height + 1])
-      (root);
-  }
-
-color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1))
-
-format = d3.format(",d")
-width = 200
-r = width / 10
-arc = d3.arc()
-    .startAngle(d => d.x0)
-    .endAngle(d => d.x1)
-    .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
-    .padRadius(r * 1.5)
-    .innerRadius(d => d.y0 * r)
-    .outerRadius(d => Math.max(d.y0 * r, d.y1 * r - 1))
 
 
 
-const chart = () => {
+
+const chart = (data) => {
+    partition = (data) => {
+      const root = d3.hierarchy(data)
+          .sum(d => d.value)
+          .sort((a, b) => b.value - a.value);
+      return d3.partition()
+          .size([2 * Math.PI, root.height + 1])
+        (root);
+    }
+    
+    color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1))
+    format = d3.format(",d")
+    width = 200
+    r = width / 10
+    arc = d3.arc()
+        .startAngle(d => d.x0)
+        .endAngle(d => d.x1)
+        .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
+        .padRadius(r * 1.5)
+        .innerRadius(d => d.y0 * r)
+        .outerRadius(d => Math.max(d.y0 * r, d.y1 * r - 1))
+    
     const root = partition(data);
-  
     root.each(d => d.current = d);
 
     const svg = d3.select("#right")
@@ -151,4 +151,4 @@ const chart = () => {
 
 }
 
-chart()
+chart(info)
