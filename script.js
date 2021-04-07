@@ -117,9 +117,9 @@ const LeftInterraction = () => {
         // Show/hide Visualization(s)
         if (sum == 100){
             that.hide = false;
-            // for (var i=0; i<categories.length; i++) {
-            //     d3.select(`#${categories[i]}`).attr("disabled", true);
-            // }
+            for (var i=0; i<categories.length; i++) {
+                d3.select(`#${categories[i]}`).attr("disabled", true);
+            }
         } else {
             that.hide = true;
         }
