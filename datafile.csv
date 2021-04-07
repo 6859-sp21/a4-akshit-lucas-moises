@@ -1,55 +1,53 @@
-item_code,variable,metric,units,mean,category_1,category_2,
-,Rice,paid_for_in_last_30_days,INR,18.23180262,Food,,
-,Wheat,paid_for_in_last_30_days,INR,6.11809772,Food,,
-,Sugar,paid_for_in_last_30_days,INR,3.960027328,Food,,
-,Kerosene,paid_for_in_last_30_days,INR,29.48711699,Food,,
-,Other cereals,paid_for_in_last_30_days,INR,0.241369932,Food,,
-CO6T,Cereal products,,INR,194.6471464,Food,,
-CO7T,Pulses,,INR,399.0807592,Food,,
-CO8T,Meat,,INR,75.03989554,Food,,
-CO9T,Sweeteners,,INR,243.1591507,Food,,
-CO10T,Edible oil,,INR,65.6747793,Food,,
-CO11T,Eggs,,INR,368.187587,Food,,
-CO12T,Milk,,INR,133.4866981,Food,,
-CO13T,Milk products,,INR,81.24922473,Food,,
-CO14T,Vegetables,,INR,470.0842898,Food,,
-CO15,Salt/spices,consumed_in_last_30_days,INR,188.4873831,Food,,
-CO16,Other Food,consumed_in_last_30_days,INR,87.59071826,Food,,
-CO17,Processed foods,consumed_in_last_30_days,INR,82.09665446,Food,,
-CO18,Paan/tobac/intox,consumed_in_last_30_days,INR,135.5917295,Leisure,,
-CO19,Fruits/nuts,consumed_in_last_30_days,INR,127.6215436,Food,,
-CO20,Eating out,consumed_in_last_30_days,INR,87.18546343,Leisure,,
-CO21,HH Fuel,consumed_in_last_30_days,INR,295.4128871,Household,Consumables,
-CO22,HH Electricity,consumed_in_last_30_days,INR,209.7298137,Services,Infratructure,
-CO23,Entertainment,consumed_in_last_30_days,INR,30.73776959,Leisure,,
-CO24,"Telephone/Mobile, cable/dish, internet",consumed_in_last_30_days,INR,217.3436778,Services,Connectivity,
-CO25,Cosmetics / Toilet articles,consumed_in_last_30_days,INR,122.1852169,Household,Consumables,
-CO26,Household items,consumed_in_last_30_days,INR,37.41496583,Household,Consumables,
-CO27,"Soap, detergent/washing powder,�agarbati, insecticide, etc.",consumed_in_last_30_days,INR,158.3502519,Household,Consumables,
-CO28,Transportation,consumed_in_last_30_days,INR,324.8659354,Services,Transportation,
-CO29,"Diesel, petrol, CNG, maintenance",consumed_in_last_30_days,INR,304.620657,Household,Consumables,
-CO30,House rent / Society charges,consumed_in_last_30_days,INR,117.3683263,Housing,,
-CO30A,House loan installment,consumed_in_last_30_days,INR,64.8435932,Housing,,
-CO30B,"Other rent�- appliances, etc.",consumed_in_last_30_days,INR,7.03508397,Household,"Furnitures, Appliances",
-CO31,"Consumer taxes, cesses, and fees",consumed_in_last_30_days,INR,49.42497534,Taxes & Fees,,
-CO32,Services servants,consumed_in_last_30_days,INR,87.15863386,Luxury,,
-CO33,Medical out-patient,consumed_in_last_30_days,INR,474.3469875,Services,Healthcare,
-CO34,Medical in-patient,spent_in_last_365_days,INR,6324.71941,Services,Healthcare,
-CO35,School,spent_in_last_365_days,INR,4311.081862,Services,Education,
-CO36,Private Tuition fees�,spent_in_last_365_days,INR,910.0338287,Services,Education,
-CO37,School books,spent_in_last_365_days,INR,1476.13819,Services,Education,
-CO38,Clothing/bedding,spent_in_last_365_days,INR,3433.46602,Clothing,,
-CO39,Footwear,spent_in_last_365_days,INR,895.0683536,Clothing,,
-CO40,Furniture/fixtures,spent_in_last_365_days,INR,383.3692104,Household,"Furnitures, Appliances",
-CO41,Crockery/utensils,spent_in_last_365_days,INR,254.924774,Household,"Furnitures, Appliances",
-CO42,HH appliances,spent_in_last_365_days,INR,224.2794757,Household,"Furnitures, Appliances",
-CO43,Recreation goods,spent_in_last_365_days,INR,238.5618808,Leisure,,
-CO44,Jewellery,spent_in_last_365_days,INR,2565.613382,Luxury,,
-CO45,Transport equipment,spent_in_last_365_days,INR,1393.347624,Services,Transportation,
-CO46,Therapeutic appliances,spent_in_last_365_days,INR,84.2973247,Services,Healthcare,
-CO47,Personal care & household items,spent_in_last_365_days,INR,121.0060187,Products,Hygeine,
-CO48,Other personal,spent_in_last_365_days,INR,480.0359206,Products,Hygeine,
-CO49,Repair/maintenance,spent_in_last_365_days,INR,1964.514306,Services,,
-CO50,Insurance premiums,spent_in_last_365_days,INR,2170.557075,Services,,
-CO51,Vacations,spent_in_last_365_days,INR,459.9371927,Leisure,,
-CO52,Social functions,spent_in_last_365_days,INR,6411.314131,Leisure,,
+"variable","mean","category_1"
+"Edible oil",25.2371913245933,"Food"
+"Eggs",228.57257742136,"Food"
+"Milk",44.6566002957962,"Food"
+"Milk products",43.8051297590032,"Food"
+"Vegetables",317.464497751997,"Food"
+"Salt/spices",127.436333884973,"Food"
+"Other Food",48.1866731070491,"Food"
+"Processed foods",41.8683889936339,"Food"
+"Paan/tobac/intox",92.4348538057717,"Leisure"
+"Fruits/nuts",39.6541285887461,"Food"
+"Rice",404.392617671892,"Food"
+"Eating out",21.0283399674908,"Leisure"
+"HH Fuel",220.844841841359,"Household"
+"HH Electricity",76.7562583077269,"Services"
+"Entertainment",2.47225490673419,"Leisure"
+"Telephone/Mobile, cable/dish, internet",69.0945993483001,"Services"
+"Cosmetics / Toilet articles",66.3375931221905,"Household"
+"Household items",11.7161964104049,"Household"
+"Soap, detergent/washing powder,�agarbati, insecticide, etc.",95.4448799921489,"Household"
+"Transportation",109.481790176529,"Services"
+"Diesel, petrol, CNG, maintenance",22.8622894878041,"Household"
+"Wheat",205.79677305543,"Food"
+"House rent / Society charges",11.105840597094,"Housing"
+"Consumer taxes, cesses, and fees",1.22680927332981,"Taxes & Fees"
+"Services servants",3.36681673951722,"Luxury"
+"Medical out-patient",15.9269329915634,"Services"
+"Medical in-patient",103.658536775141,"Services"
+"School",51.073578092667,"Services"
+"Private Tuition fees�",20.0395264088281,"Services"
+"School books",56.6295739897938,"Services"
+"Clothing/bedding",164.065369863878,"Clothing"
+"Footwear",44.8046683639178,"Clothing"
+"Sugar",91.6844656412301,"Food"
+"Furniture/fixtures",3.36273690188032,"Household"
+"Crockery/utensils",8.30469616969734,"Household"
+"HH appliances",1.5699668129289,"Household"
+"Recreation goods",3.04196486568622,"Leisure"
+"Jewellery",5.63236982955744,"Luxury"
+"Transport equipment",14.0010061318105,"Services"
+"Therapeutic appliances",1.30752364863515,"Services"
+"Personal care & household items",5.74549278654273,"Products"
+"Other personal",9.84709466209324,"Products"
+"Repair/maintenance",12.1116986538099,"Services"
+"Kerosene",54.1676343752692,"Food"
+"Insurance premiums",15.8359810790556,"Services"
+"Vacations",5.1630010223499,"Leisure"
+"Social functions",100.345524374908,"Leisure"
+"Other cereals",35.3872114940746,"Food"
+"Cereal products",159.383510107245,"Food"
+"Pulses",177.704799503281,"Food"
+"Meat",29.2860461030611,"Food"
+"Sweeteners",217.981873898556,"Food"
