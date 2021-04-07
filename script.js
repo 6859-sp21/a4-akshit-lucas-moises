@@ -124,10 +124,8 @@ const LeftInterraction = () => {
             that.hide = true;
         }
 
-        if (that.hide) {
-            showVis('user-viz', getEmptyDataObj());
-            showVis('country-viz', getEmptyDataObj());
-        } else {
+        
+        if(!that.hide) {
             showVis('user-viz', that.getUserData());
             showVis('country-viz', consumptionVizData);
         }
@@ -160,8 +158,8 @@ const SunBurst = (data, name) => {
     
     color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1))
     format = d3.format(",d")
-    width = 200
-    r = width / 5
+    width = 700
+    r = width / 7
     arc = d3.arc()
         .startAngle(d => d.x0)
         .endAngle(d => d.x1)
@@ -173,11 +171,27 @@ const SunBurst = (data, name) => {
     const root = partition(data);
     root.each(d => d.current = d);
 
+    if ( name == 'user-viz') {
+        d3.select("#right")
+            .append("h1")
+            .style('margin-left', '32px')
+            .text('Your expenditure style')
+    }
+    if ( name == 'country-viz') {
+        d3.select("#right")
+            .append("h1")
+            .style('margin-left', '32px')
+            .text('Expenditure Data of the Indian Poor*')
+    }
+    
+
     const svg = d3.select("#right")
         .append("svg")
         .attr("viewBox", [0, 0, width, width])
         .attr('class', name)
         .style("font", "10px sans-serif");
+    
+    
   
     const g = svg.append("g")
         .attr("transform", `translate(${width / 2},${width / 2})`);
@@ -281,7 +295,6 @@ d3.csv("datafile.csv").then(
     (data) => {
         consumptionVizData = csv2JSON(data);
         leftInterraction.update();
-        //
     }, 
     (error) => {
         console.error(`LOAD_FILE_ERROR: ${error}`)
