@@ -117,9 +117,9 @@ const LeftInterraction = () => {
         // Show/hide Visualization(s)
         if (sum == 100){
             that.hide = false;
-            for (var i=0; i<categories.length; i++) {
-                d3.select(`#${categories[i]}`).attr("disabled", true);
-            }
+            // for (var i=0; i<categories.length; i++) {
+            //     d3.select(`#${categories[i]}`).attr("disabled", true);
+            // }
         } else {
             that.hide = true;
         }
@@ -128,6 +128,7 @@ const LeftInterraction = () => {
         if(!that.hide) {
             showVis('user-viz', that.getUserData());
             showVis('country-viz', consumptionVizData);
+            d3.select('.smiley').style('display', 'block');
         }
     }
 
@@ -171,25 +172,35 @@ const SunBurst = (data, name) => {
     const root = partition(data);
     root.each(d => d.current = d);
 
+    var svg = null;
     if ( name == 'user-viz') {
-        d3.select("#right")
+        d3.select("#user-viz-div")
             .append("h1")
             .style('margin-left', '32px')
-            .text('Your expenditure style')
+            .text('What you think')
+
+        svg = d3.select("#user-viz-div")
+            .append("svg")
+            .attr("viewBox", [0, 0, width, width])
+            .attr('class', name)
+            .style("font", "10px sans-serif");
     }
-    if ( name == 'country-viz') {
-        d3.select("#right")
+    else if ( name == 'country-viz') {
+        d3.select("#data-viz-div")
             .append("h1")
             .style('margin-left', '32px')
-            .text('Expenditure Data of the Indian Poor*')
+            .text('The Reality')
+            // .text('Expenditure Data of the Indian Poor*')
+
+        svg = d3.select("#data-viz-div")
+            .append("svg")
+            .attr("viewBox", [0, 0, width, width])
+            .attr('class', name)
+            .style("font", "10px sans-serif");
     }
     
 
-    const svg = d3.select("#right")
-        .append("svg")
-        .attr("viewBox", [0, 0, width, width])
-        .attr('class', name)
-        .style("font", "10px sans-serif");
+
     
     
   
