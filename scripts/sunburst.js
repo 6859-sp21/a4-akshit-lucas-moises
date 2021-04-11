@@ -38,12 +38,12 @@ const SunBurst = (data) => {
     var svg = d3.select("#viz-div")
       .append("svg")
       .attr("viewBox", [0, 0, width, width])
-      .style("font", "10px sans-serif")
-      // .attr("transform", `translate(${vizDivCenter - outerRadius},${vizDivCenter - outerRadius - 2 * pieRadius})`);
+      .style("font", "10px sans-serif");
   
     // ADD GROUP
     const g = svg.append("g");
 
+    // ADD PATH(S)
     const path = g.append("g")
       .selectAll("path")
       .data(root.descendants().slice(1))
