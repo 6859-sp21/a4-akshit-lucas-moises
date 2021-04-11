@@ -38,7 +38,6 @@ const PieChart = (initialData, divId, vizDivCenter) => {
 		//Draw arc paths
 		arcs.append("path")
 			.attr("fill", (d, i) => { 
-                console.log(`${JSON.stringify(i)}: ${colorScale(i)}`);
                 return colorScale(i); 
             })
             .style("fill-opacity","0.6")

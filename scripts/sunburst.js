@@ -50,9 +50,7 @@ const SunBurst = (data) => {
       .data(root.descendants().slice(1))
       .join("path")
         .attr("fill", d => { 
-          while (d.depth > 1) d = d.parent; 
-          
-          console.log(`${d.data.name}: ${colorScale(d.data.name)}`);
+          while (d.depth > 1) d = d.parent;
           return colorScale(d.data.name); 
         })
         .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)

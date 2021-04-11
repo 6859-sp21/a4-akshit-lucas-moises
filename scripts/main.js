@@ -9,7 +9,7 @@ const categories = [
     "Products"
 ];
 const vizDivId = "viz-div";
-const fileLocation = "../datafile.csv";
+const fileLocation = "https://raw.githubusercontent.com/6859-sp21/a4-akshit-lucas-moises/main/datafile.csv";
 
 // FUNCTION: SHOW VISUALIZATION
 const showVis = function(cssClass, vizData) {
