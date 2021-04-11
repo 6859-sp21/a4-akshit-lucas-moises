@@ -1,66 +1,60 @@
+
+// FUNCTION: DATA MANIPULATION FOR SUNBURST
+const partition = function(data) {
+  const root = d3.hierarchy(data)
+      .sum(d => d.value)
+      .sort((a, b) => b.value - a.value);
+  return d3.partition()
+      .size([2 * Math.PI, root.height + 1])
+    (root);
+}
 // SUNBURST GRAPH
-const SunBurst = (data, name) => {
-    partition = (data) => {
-      const root = d3.hierarchy(data)
-          .sum(d => d.value)
-          .sort((a, b) => b.value - a.value);
-      return d3.partition()
-          .size([2 * Math.PI, root.height + 1])
-        (root);
-    }
-    
-    color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1))
+const SunBurst = (data) => {
+
+  // DATA MANIPULATION
+    const root = partition(data);
+    root.each(d => d.current = d);
+
+    // SIZE CALCULATIONS
     format = d3.format(",d")
-    width = 700
+    width = vizDivWidth
     r = width / 7
+    var outerRadius = 0;
+
+    // ADDING ARCS
     arc = d3.arc()
         .startAngle(d => d.x0)
         .endAngle(d => d.x1)
         .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
         .padRadius(r * 1.5)
         .innerRadius(d => d.y0 * r)
-        .outerRadius(d => Math.max(d.y0 * r, d.y1 * r - 1))
-    
-    const root = partition(data);
-    root.each(d => d.current = d);
+        .outerRadius(d => {
+          outerRadius = Math.max(d.y0 * r, d.y1 * r - 1);
+          return outerRadius;
+        })
 
-    var svg = null;
-    if ( name == 'user-viz') {
-        d3.select("#user-viz-div")
-            .append("h1")
-            .style('margin-left', '32px')
-            .text('What you think')
-
-        svg = d3.select("#user-viz-div")
-            .append("svg")
-            .attr("viewBox", [0, 0, width, width])
-            .attr('class', name)
-            .style("font", "10px sans-serif");
-    }
-    else if ( name == 'country-viz') {
-        d3.select("#data-viz-div")
-            .append("h1")
-            .style('margin-left', '32px')
-            .text('The Reality')
-            // .text('Expenditure Data of the Indian Poor*')
-
-        svg = d3.select("#data-viz-div")
-            .append("svg")
-            .attr("viewBox", [0, 0, width, width])
-            .attr('class', name)
-            .style("font", "10px sans-serif");
-    }
+    // CREATE SVG
+    console.log(vizDivCenter);
+    var svg = d3.select("#viz-div")
+      .append("svg")
+      .attr("viewBox", [0, 0, width, width])
+      .style("font", "10px sans-serif")
+      // .attr("transform", `translate(${vizDivCenter - outerRadius},${vizDivCenter - outerRadius - 2 * pieRadius})`);
   
-    const g = svg.append("g")
-        .attr("transform", `translate(${width / 2},${width / 2})`);
-  
+    // ADD GROUP
+    const g = svg.append("g");
+
     const path = g.append("g")
       .selectAll("path")
       .data(root.descendants().slice(1))
       .join("path")
-        .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
+        .attr("fill", d => { while (d.depth > 1) d = d.parent; return colorScale(d.data.name); })
         .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
         .attr("d", d => arc(d.current));
+
+    console.log(outerRadius);
+    svg.attr("transform", `translate(${vizDivCenter - outerRadius},${vizDivCenter - outerRadius - 2 * pieRadius})`)
+    g.attr("transform", `translate(${outerRadius},${outerRadius})`);
   
     path.filter(d => d.children)
         .style("cursor", "pointer")

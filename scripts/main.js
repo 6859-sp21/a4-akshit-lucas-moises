@@ -1,4 +1,3 @@
-// GLOBAL VARIABLES
 const categories = [
     "Food",
     "Leisure",
@@ -9,48 +8,8 @@ const categories = [
     "Luxury",
     "Products"
 ];
-var consumptionVizData = {};
-
-// FUNCTION: SET INITIAL (NULL) VALUES FOR DATA OBJECTS
-const getEmptyDataObj = function() {
-    var dataObj = { "name": "root", "children": []};
-    for (var i=0; i<categories.length; i++) {
-        categoryName = categories[i];
-        dataObj.children.push({
-            "name": categoryName,
-            "children": [],
-            "value": 0
-        });
-    }
-    return dataObj;
-}
-
-// FUNCTION: FORMAT DATA
-const csv2JSON = function(data){
-    var jsonData = getEmptyDataObj();
-    for (var i=0; i<data.length; i++) {
-
-        var name = data[i]["variable"];
-        var value = data[i]["mean"];
-        var parent1 = data[i]["category_1"];
-        // var parent2 = data[i]["category_2"];
-
-        var dataObj = {
-            "name": name,
-            "value" :  value
-        };
-
-        for (var j=0; j<jsonData.children.length; j++) {
-            var category = jsonData.children[j];
-            var categoryName = category.name;
-            if (categoryName === parent1) {
-                category.children.push(dataObj);
-                break;
-            }
-        }
-    }
-    return jsonData;
-}
+const vizDivId = "viz-div";
+const fileLocation = "../datafile.csv";
 
 // FUNCTION: SHOW VISUALIZATION
 const showVis = function(cssClass, vizData) {
@@ -59,22 +18,23 @@ const showVis = function(cssClass, vizData) {
 }
 
 // MAIN
-generateUserControls();
-for (var i=0; i<categories.length; i++) {
-    d3.select(`#${categories[i]}`).on("input", function() {
-        sliderInputListener(this.id, +this.value);
-    })
-}
+var vizDivWidth = d3.select(`#${vizDivId}`).node().getBoundingClientRect().width;
+const vizDivCenter = vizDivWidth / 2;
+const pieRadius = vizDivWidth / 8;
 
-var leftInterraction = LeftInterraction();
-var pieChart = PieChart("user-viz-div");
+var userInput = getEmptyCategoriesWithValuesObj(categories);
+generateUserControls(userInput);
 
-d3.csv("../datafile.csv").then(
+var colorScale = d3.scaleOrdinal()
+    .domain(categories)
+    .range(d3.schemeDark2);
+var pieChart = PieChart(getObjValuesAsArray(userInput, categories), vizDivId, vizDivCenter, colorScale);
+
+var consumptionVizData = {};
+d3.csv(fileLocation).then(
     (data) => {
-        consumptionVizData = csv2JSON(data);
-        leftInterraction.update();
+        consumptionVizData = csv2JSON(data, categories);
+        d3.select("button").style("display", "block");
     }, 
-    (error) => {
-        console.error(`LOAD_FILE_ERROR: ${error}`)
-    }
+    (error) => { console.error(error); }
 );
