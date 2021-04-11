@@ -9,7 +9,7 @@ const generateUserControls = function(initialValues) {
         userInputHtml += `<div class="categoryInput">`;
         userInputHtml += `${categoryName} = `;
         userInputHtml += `</label>`;
-        userInputHtml += `<input type="number" step="5" id="${categoryName}-input" value="${initialValues[categoryName]}"`;
+        userInputHtml += `<input min="0" max="100" type="number" step="5" id="${categoryName}-input" value="${initialValues[categoryName]}"`;
         userInputHtml += `onchange="categoryInputChange('${categoryName}');">%</input>`;
         userInputHtml += `</div>`;
     }
@@ -26,13 +26,26 @@ const categoryInputChange = function(categoryName) {
     // UPDATE PIE CHART
     userInput[categoryName] = +d3.select(`#${categoryName}-input`).node().value;
     pieChart.update(getObjValuesAsArray(userInput, categories));
+
+    // UPDATE TOTAL
+    d3.select("h3#message").html(`Total = ${getUserInputTotal()}%`);
 }
 
 // BUTTON CLICK LISTENER
 const btnClick = function() {
 
+    if (getUserInputTotal() != 100) {
+        d3.select("h3#message").html(`Sorry, but the total needs to add upto a 100%.<br/>Currently, it's at ${getUserInputTotal()}%.`);
+        return;
+    }
+
     // SHOW SUNBURST
     SunBurst(consumptionVizData);
     d3.select("button").attr("disabled", true);
     d3.selectAll("input").attr("disabled", true);
+}
+
+// INPUT VALIDATOR
+const getUserInputTotal = function() {
+    return getObjValuesAsArray(userInput, categories).reduce((a, b) => { return a + b; }, 0);
 }
