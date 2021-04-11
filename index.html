@@ -2,20 +2,29 @@
 <html>
     <head>
         <style type="text/css">
+           html, body {
+                height: 100%;
+            }
+            div.outer {
+                min-width: 700px;
+                height: 100%;
+            }
             div.questions {
                 background-color: #dbffe5;
                 padding: 32px;
-                border-radius: 32px;
                 box-shadow: 0px 0px 12px 6px #eee;
                 text-align: center;
+                width: 45%;
+                float: left;
+                height: 100%;
             }
             div.visualizations {
-                width: 100%;
-                float: left;
+                width: 45%;
+                float: right;
+                box-shadow: 0px 0px 12px 6px #eee;
+                height: 100%;
             }
             div#user-viz-div, div#data-viz-div {
-                width: 50%;
-                float: left;
             }
             div.visualizations > div > h1 {
                 text-align: center;
@@ -71,9 +80,6 @@
             <div class="content visualizations">
                 <div id="user-viz-div"></div>
                 <div id="data-viz-div"></div>
-                <div class="smiley">
-                    <div class="bottom"></div>
-                </div>
             </div>
         </div>
     </body>
