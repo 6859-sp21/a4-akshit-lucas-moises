@@ -60,20 +60,34 @@ const generateUserControls = function() {
     const inputsDiv = d3.select("#user-input");
     
     var userInputHtml = "";
-    for (var i=0; i<categories.length; i++) {
+    for (var i = 0; i<categories.length; i++) {
         userInputHtml += `<div>`;
+
+
         userInputHtml += `<label for="${categories[i]}" class="label">`;
         userInputHtml += `${categories[i]} = <span id="${categories[i]}-value">...</span>  %`;
         userInputHtml += `</label>`;
-        userInputHtml += `<input type="range" min="0" max="100" id="${categories[i]}">`;
+
+        userInputHtml += `<input type="button" value="+5" id="${categories[i]}_plus"></input>`;
+        userInputHtml += `<input type="button" value="-5" id="${categories[i]}_minus"></input>`;
+
+
         userInputHtml += `</div>`;
     }
     inputsDiv.html(userInputHtml);
 }
 
-// CLICK LISTENER
-const sliderInputListener = function(categoryName, value) {
-    leftInterraction.data[categoryName] = +value;
+// CLICK LISTENERS
+const inputListenerPlus = function(categoryName) {
+    if (leftInterraction.dataSum() >= 100) return
+    let val = leftInterraction.data[categoryName] + 5;
+    leftInterraction.data[categoryName] = Math.min(100, val)
+    leftInterraction.update();
+}
+
+const inputListenerMinus = function(categoryName) {
+    let val = leftInterraction.data[categoryName] - 5;
+    leftInterraction.data[categoryName] = Math.max(0, val)
     leftInterraction.update();
 }
 
@@ -101,8 +115,16 @@ const LeftInterraction = () => {
         d3.select(`#${sliderId}`).property("value", value);
     };
 
-    that.update = () => {
+    that.dataSum = () => {
+        let sum = 0
+        for (var i=0; i<categories.length; i++) {
+            sum += that.data[categories[i]];
+        }
+        return sum;
+    }
 
+    that.update = () => {
+        
         // adjust the text on the range slider, and
         // sum all values
         var sum = 0;
@@ -295,10 +317,14 @@ const SunBurst = (data, name) => {
 // MAIN
 generateUserControls();
 for (var i=0; i<categories.length; i++) {
-    d3.select(`#${categories[i]}`).on("input", function() {
-        sliderInputListener(this.id, +this.value);
+    d3.select(`#${categories[i]}_plus`).on("click", function() {
+        inputListenerPlus(this.id.replace('_plus',''));
+    })
+    d3.select(`#${categories[i]}_minus`).on("click", function() {
+        inputListenerMinus(this.id.replace('_minus',''));
     })
 }
+
 
 var leftInterraction = LeftInterraction()
 
