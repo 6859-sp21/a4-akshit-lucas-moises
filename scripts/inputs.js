@@ -34,4 +34,5 @@ const btnClick = function() {
     // SHOW SUNBURST
     SunBurst(consumptionVizData);
     d3.select("button").attr("disabled", true);
+    d3.selectAll("input").attr("disabled", true);
 }

@@ -43,17 +43,23 @@ const SunBurst = (data) => {
     // ADD GROUP
     const g = svg.append("g");
 
+    console.log(colorScale);
     // ADD PATH(S)
     const path = g.append("g")
       .selectAll("path")
       .data(root.descendants().slice(1))
       .join("path")
-        .attr("fill", d => { while (d.depth > 1) d = d.parent; return colorScale(d.data.name); })
+        .attr("fill", d => { 
+          while (d.depth > 1) d = d.parent; 
+          
+          console.log(`${d.data.name}: ${colorScale(d.data.name)}`);
+          return colorScale(d.data.name); 
+        })
         .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
         .attr("d", d => arc(d.current));
 
     console.log(outerRadius);
-    svg.attr("transform", `translate(${vizDivCenter - outerRadius},${vizDivCenter - outerRadius - 2 * pieRadius})`)
+    svg.attr("transform", `translate(${vizDivCenter - outerRadius},${vizDivCenter - outerRadius - 2 * pieRadius - 3})`)
     g.attr("transform", `translate(${outerRadius},${outerRadius})`);
   
     path.filter(d => d.children)

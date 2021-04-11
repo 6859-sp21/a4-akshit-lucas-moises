@@ -1,9 +1,8 @@
 // PIE CHART
-const PieChart = (initialData, divId, vizDivCenter, colorScale) => {
+const PieChart = (initialData, divId, vizDivCenter) => {
 
     const that = this;
     that.vizDivCenter = vizDivCenter;
-    that.colorScale = colorScale;
 
     // A function that create / update the plot for a given variable:
     that.update = (data) => {
@@ -23,7 +22,7 @@ const PieChart = (initialData, divId, vizDivCenter, colorScale) => {
 
 		// Generate the arcs
 		var arc = d3.arc()
-            .innerRadius(0)
+            .innerRadius(pieInnerRadius)
 			.outerRadius(pieRadius);
 
         // CREATE DATA PACEHOLDER
@@ -38,7 +37,11 @@ const PieChart = (initialData, divId, vizDivCenter, colorScale) => {
 
 		//Draw arc paths
 		arcs.append("path")
-			.attr("fill", (d, i) => { return that.colorScale(i); })
+			.attr("fill", (d, i) => { 
+                console.log(`${JSON.stringify(i)}: ${colorScale(i)}`);
+                return colorScale(i); 
+            })
+            .style("fill-opacity","0.6")
 			.attr("d", arc);
     }
 
