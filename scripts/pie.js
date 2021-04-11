@@ -7,10 +7,11 @@ const PieChart = (name) => {
         .append("svg")
         .attr("width", 2 * pieRadius)
         .attr("height", 2 * pieRadius)
-        .append("g").attr("transform", `translate(${pieRadius},${pieRadius})`);
 
     // A function that create / update the plot for a given variable:
     this.update = () => {
+
+        var g = this.svg.append("g").attr("transform", `translate(${pieRadius},${pieRadius})`);
 
         // set the color scale
         var color = d3.scaleOrdinal()
@@ -26,7 +27,7 @@ const PieChart = (name) => {
 
 		//Generate groups
         console.log(this.data);
-		var arcs = this.svg.selectAll("arc")
+		var arcs = g.selectAll("arc")
             .data(pie(this.data))
             .enter()
             .append("g")

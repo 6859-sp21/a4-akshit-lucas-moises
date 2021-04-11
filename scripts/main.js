@@ -66,9 +66,10 @@ for (var i=0; i<categories.length; i++) {
     })
 }
 
-var leftInterraction = LeftInterraction()
+var leftInterraction = LeftInterraction();
+var pieChart = PieChart("user-viz-div");
 
-d3.csv("datafile.csv").then(
+d3.csv("../datafile.csv").then(
     (data) => {
         consumptionVizData = csv2JSON(data);
         leftInterraction.update();
