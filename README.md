@@ -39,9 +39,9 @@ We ended up using the national poverty line as a threshold. However, we had also
 
 As we wanted people to reflect on their (mis-)perceptions of the spending patterns of the poor, we decided to use a narrative technique that promotes this kind of self-reflection: we first ask users to guess the share of each consumption category, and then juxtapose users' estimate to the real consumption statistics.
 
-We iterated over several methods to collect user input. We started with simple sliders but found it took users too long to allocate 100%. Also, asking users to make estimates on the percent level seemed to invite false precision (e.g., users likely have no strong opinion on whether food consumption is 63% or 64%, so asking them to make such a precise estimate). We then shifted to text input, paired with buttons that increment by 5 percentage points. We also added a doughnut chart that updates as users make input so that users have immediate visual feedback of their input. Other ideas were to let users drag-and-drop money icons on different consumption categories or let them build the pie chart themselves but these solutions proved to be difficult to implement technically.
+We iterated over several methods to collect user input. We started with simple sliders but found it took users too long to allocate 100%. Also, asking users to make estimates on the percent level seemed to invite false precision (e.g., users likely have no strong opinion on whether food consumption is 63% or 64%, so asking them to make such a precise estimate may be counter-productive). We then shifted to text input, paired with buttons that increment by 5 percentage points. We also added a doughnut chart that updates as users make input so that users have immediate visual feedback of their input. Providing default values for the categories may anchor users' estimates but also helps them to quicker get to the real data. Other ideas were to let users drag-and-drop money icons on different consumption categories or let them build the pie chart themselves but these solutions proved to be difficult to implement technically.
 
-To facilitate the comparison of the user input and reality, we aligned the doughnut charts concentrically and made the color-coding consistent. 
+To facilitate the comparison of the user input and reality, we aligned the doughnut charts concentrically and made the color-coding consistent. We also added the exact values as text next to users' estimates.
 
 ## Abstract/Elaborate
 
@@ -51,7 +51,7 @@ We also wanted to give users a chance to explore the full granularity of our dat
 
 The visualization still has some limitations. The concentric organization of the doughnut/sunbursts facilitates the comparison between user estimates and reality, but eventually, doughnut charts may not be the most effective encoding for visual comparisons (e.g., as discussed in class, angle and area are generally less effective encodings than length and position on a common scale).
 
-Further, collecting user input is still not as intuitive as it could be. Users have to do some cognitive work to get to 100% if they change any of the default values, and the fact that they can temporarily allocate more than 100% may be confusing too.
+Further, collecting user input is still not as intuitive as it could be. For example, users have to do some cognitive work to get to 100% if they change any of the default values, and instructions for how to interact with the visualization could potentially be clearer.
 
 # Other
 
