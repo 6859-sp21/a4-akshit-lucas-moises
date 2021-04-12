@@ -1,53 +1,53 @@
-"variable","mean","category_1"
-"Edible oil",25.2371913245933,"Food"
-"Eggs",228.57257742136,"Food"
-"Milk",44.6566002957962,"Food"
-"Milk products",43.8051297590032,"Food"
-"Vegetables",317.464497751997,"Food"
-"Salt/spices",127.436333884973,"Food"
-"Other Food",48.1866731070491,"Food"
-"Processed foods",41.8683889936339,"Food"
-"Paan/tobac/intox",92.4348538057717,"Leisure"
-"Fruits/nuts",39.6541285887461,"Food"
-"Rice",404.392617671892,"Food"
-"Eating out",21.0283399674908,"Leisure"
-"HH Fuel",220.844841841359,"Household"
-"HH Electricity",76.7562583077269,"Services"
-"Entertainment",2.47225490673419,"Leisure"
-"Telephone/Mobile, cable/dish, internet",69.0945993483001,"Services"
-"Cosmetics / Toilet articles",66.3375931221905,"Household"
-"Household items",11.7161964104049,"Household"
-"Soap, detergent/washing powder,�agarbati, insecticide, etc.",95.4448799921489,"Household"
-"Transportation",109.481790176529,"Services"
-"Diesel, petrol, CNG, maintenance",22.8622894878041,"Household"
-"Wheat",205.79677305543,"Food"
-"House rent / Society charges",11.105840597094,"Housing"
-"Consumer taxes, cesses, and fees",1.22680927332981,"Taxes & Fees"
-"Services servants",3.36681673951722,"Luxury"
-"Medical out-patient",15.9269329915634,"Services"
-"Medical in-patient",103.658536775141,"Services"
-"School",51.073578092667,"Services"
-"Private Tuition fees�",20.0395264088281,"Services"
-"School books",56.6295739897938,"Services"
-"Clothing/bedding",164.065369863878,"Clothing"
-"Footwear",44.8046683639178,"Clothing"
-"Sugar",91.6844656412301,"Food"
-"Furniture/fixtures",3.36273690188032,"Household"
-"Crockery/utensils",8.30469616969734,"Household"
-"HH appliances",1.5699668129289,"Household"
-"Recreation goods",3.04196486568622,"Leisure"
-"Jewellery",5.63236982955744,"Luxury"
-"Transport equipment",14.0010061318105,"Services"
-"Therapeutic appliances",1.30752364863515,"Services"
-"Personal care & household items",5.74549278654273,"Products"
-"Other personal",9.84709466209324,"Products"
-"Repair/maintenance",12.1116986538099,"Services"
-"Kerosene",54.1676343752692,"Food"
-"Insurance premiums",15.8359810790556,"Services"
-"Vacations",5.1630010223499,"Leisure"
-"Social functions",100.345524374908,"Leisure"
-"Other cereals",35.3872114940746,"Food"
-"Cereal products",159.383510107245,"Food"
-"Pulses",177.704799503281,"Food"
-"Meat",29.2860461030611,"Food"
-"Sweeteners",217.981873898556,"Food"
+variable,mean,category_1
+Edible oil,25.23719132,Food
+Eggs,228.5725774,Food
+Milk,44.6566003,Food
+Milk products,43.80512976,Food
+Vegetables,317.4644978,Food
+Salt/spices,127.4363339,Food
+Other Food,48.18667311,Food
+Processed foods,41.86838899,Food
+Paan/tobac/intox,92.43485381,Leisure
+Fruits/nuts,39.65412859,Food
+Rice,404.3926177,Food
+Eating out,21.02833997,Leisure
+HH Fuel,220.8448418,Household
+HH Electricity,76.75625831,Services
+Entertainment,2.472254907,Leisure
+"Telephone/Mobile, cable/dish, internet",69.09459935,Services
+Cosmetics / Toilet articles,66.33759312,Household
+Household items,11.71619641,Household
+"Soap, detergent/washing powder,�agarbati, insecticide, etc.",95.44487999,Household
+Transportation,109.4817902,Services
+"Diesel, petrol, CNG, maintenance",22.86228949,Household
+Wheat,205.7967731,Food
+House rent / Society charges,11.1058406,Housing
+"Consumer taxes, cesses, and fees",1.226809273,Housing
+Services servants,3.36681674,Luxury
+Medical out-patient,15.92693299,Services
+Medical in-patient,103.6585368,Services
+School,51.07357809,Services
+Private Tuition fees�,20.03952641,Services
+School books,56.62957399,Services
+Clothing/bedding,164.0653699,Clothing
+Footwear,44.80466836,Clothing
+Sugar,91.68446564,Food
+Furniture/fixtures,3.362736902,Household
+Crockery/utensils,8.30469617,Household
+HH appliances,1.569966813,Household
+Recreation goods,3.041964866,Leisure
+Jewellery,5.63236983,Luxury
+Transport equipment,14.00100613,Services
+Therapeutic appliances,1.307523649,Services
+Personal care & household items,5.745492787,Products
+Other personal,9.847094662,Products
+Repair/maintenance,12.11169865,Services
+Kerosene,54.16763438,Food
+Insurance premiums,15.83598108,Services
+Vacations,5.163001022,Leisure
+Social functions,100.3455244,Leisure
+Other cereals,35.38721149,Food
+Cereal products,159.3835101,Food
+Pulses,177.7047995,Food
+Meat,29.2860461,Food
+Sweeteners,217.9818739,Food
