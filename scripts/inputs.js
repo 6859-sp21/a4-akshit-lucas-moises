@@ -25,6 +25,10 @@ const categoryInputChange = function(categoryName) {
 
     // UPDATE PIE CHART
     userInput[categoryName] = +d3.select(`#${categoryName}-input`).node().value;
+    if (getUserInputTotal() > 100){
+        userInput[categoryName] -= getUserInputTotal() - 100;
+        d3.select(`#${categoryName}-input`).property('value', userInput[categoryName])
+    }
     pieChart.update(getObjValuesAsArray(userInput, categories));
 
     // UPDATE TOTAL
@@ -38,6 +42,10 @@ const btnClick = function() {
         d3.select("h3#message").html(`Sorry, but the total needs to add upto a 100%.<br/>Currently, it's at ${getUserInputTotal()}%.`);
         return;
     }
+
+    pieRadius = vizDivWidth / 8;
+    pieInnerRadius = pieRadius * 0.4;
+    pieChart.update(getObjValuesAsArray(userInput, categories));
 
     // SHOW SUNBURST
     SunBurst(consumptionVizData);

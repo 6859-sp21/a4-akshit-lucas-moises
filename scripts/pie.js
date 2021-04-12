@@ -20,6 +20,7 @@ const PieChart = (initialData, divId, vizDivCenter) => {
         // CREATE GROUP ELEMENT
         var g = svg.append("g").attr("transform", `translate(${pieRadius},${pieRadius})`);
 
+
 		// Generate the arcs
 		var arc = d3.arc()
             .innerRadius(pieInnerRadius)
@@ -42,6 +43,17 @@ const PieChart = (initialData, divId, vizDivCenter) => {
             })
             .style("fill-opacity","0.6")
 			.attr("d", arc);
+        
+
+        arcs.append("text")
+            .attr("transform", function(d){
+                      d.innerRadius = pieInnerRadius;
+                      d.outerRadius = pieRadius;
+                return "translate(" + arc.centroid(d) + ")";
+              })
+              .attr("text-anchor", "middle")
+              .text( (d, i) => categories[i])
+              .style("font-size", "12px");
     }
 
     update(initialData);
