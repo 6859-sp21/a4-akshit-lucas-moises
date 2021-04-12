@@ -15,14 +15,14 @@ HH Fuel,220.8448418,Household
 HH Electricity,76.75625831,Services
 Entertainment,2.472254907,Leisure
 "Phone, TV, internet",69.09459935,Services
-Cosmetics/toilet articles,66.33759312,Household
+Cosmetics articles,66.33759312,Household
 Household items,11.71619641,Household
 "Soap, detergent, etc.",95.44487999,Household
 Transportation,109.4817902,Services
-"Fuels (diesel, petrol, etc.)",22.86228949,Household
+Fuel,22.86228949,Household
 Wheat,205.7967731,Food
 House rent,11.1058406,Housing
-Consumer taxes and fees,1.226809273,Housing
+Consumer taxes,1.226809273,Housing
 Services servants,3.36681674,Luxury
 Medical out-patient,15.92693299,Services
 Medical in-patient,103.6585368,Services
