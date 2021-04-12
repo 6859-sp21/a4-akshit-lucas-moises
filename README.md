@@ -57,9 +57,9 @@ Further, collecting user input is still not as intuitive as it could be. Users h
 
 ## Division of Work 
 
-Moises took the lead on coding user input and X, Akshit took the lead on coding the D3 visualization and Y, and Lucas took the lead on data exploration & processing, presentation, and write-up.
+Moises took the lead on the D3 visualization and CSS, Akshit took the lead on user interactions and project management, and Lucas took the lead on data exploration & processing, presentation, and write-up.
 
-We estimate that in total we spent 25 people hours on this assignment.  
+We estimate that in total we spent 30 people hours on this assignment.  
 
 ## References & Quick Links
 - [Banerjee, A. V., & Duflo, E. (2007). The Economic Lives of the Poor. Journal of Economic Perspectives, 21(1), 141-168.](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.21.1.141)
