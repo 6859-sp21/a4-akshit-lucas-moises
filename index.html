@@ -11,12 +11,12 @@
             }
             div.questions {
                 background-color: #dbffe5;
-                padding: 32px;
+                padding: 0px 32px;
                 box-shadow: 0px 0px 12px 6px #eee;
                 text-align: center;
                 width: 40%;
                 float: left;
-                height: 100%;
+                height: 98%;
                 border-radius: 32px;
                 display: flex;
                 align-items: center;
@@ -27,8 +27,11 @@
                 width: 50%;
                 float: right;
                 box-shadow: 0px 0px 12px 6px #eee;
-                height: 100%;
+                height: 98%;
                 border-radius: 32px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
             .column-center {
                 display: flex;
@@ -90,10 +93,10 @@
             <div class="content questions">
                 <h1> How do Indian poor* spend their money?</h1>
                 <p>* Indian poor = Indian population living under national poverty line in 2011-12</p>
-
-                <h3 id="message">Total = 100%</h3>
                 
                 <div id="user-input"></div>
+                <h3 id="message">Total = 100%</h3>
+                <div id="user-btn"></div>
 
                 <p><b>Sources</b>: <a href="https://ihds.umd.edu/data" target="_blank">The India Human Development Survey-II (IHDS-II), 2011-12</a></p>
 

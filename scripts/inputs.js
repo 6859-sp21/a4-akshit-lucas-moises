@@ -2,6 +2,7 @@
 const generateUserControls = function(initialValues) {
     
     const inputsDiv = d3.select("#user-input");
+    const btnDiv = d3.select("#user-btn");
     
     var userInputHtml = "";
     for (var i=0; i<categories.length; i++) {
@@ -13,11 +14,10 @@ const generateUserControls = function(initialValues) {
         userInputHtml += `onchange="categoryInputChange('${categoryName}');">%</input></div>`;
         userInputHtml += `</div>`;
     }
+    inputsDiv.html(userInputHtml);
 
     // ADD SUBMIT BUTTON
-    userInputHtml += "<button onclick='btnClick()'>Click to find reality!</button>";
-
-    inputsDiv.html(userInputHtml);
+    btnDiv.html("<button onclick='btnClick()'>Click to find reality!</button>");
 }
 
 // TEXTBOX ONCHANGE LISTENER
@@ -28,6 +28,7 @@ const categoryInputChange = function(categoryName) {
     if (getUserInputTotal() > 100){
         userInput[categoryName] -= getUserInputTotal() - 100;
         d3.select(`#${categoryName}-input`).property('value', userInput[categoryName])
+        alert("Oops! You can't go beyond 100%");
     }
     pieChart.update(getObjValuesAsArray(userInput, categories));
 
