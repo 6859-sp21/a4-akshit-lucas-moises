@@ -15,9 +15,6 @@ const generateUserControls = function(initialValues) {
         userInputHtml += `</div>`;
     }
     inputsDiv.html(userInputHtml);
-
-    // ADD SUBMIT BUTTON
-    btnDiv.html("<button onclick='btnClick()'>Click to find reality!</button>");
 }
 
 // TEXTBOX ONCHANGE LISTENER
