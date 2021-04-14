@@ -18,7 +18,7 @@ const SunBurst = (data) => {
     // SIZE CALCULATIONS
     format = d3.format(",d")
     width = vizDivWidth
-    r = width / 7
+    r = width / 8
     var outerRadius = 0;
 
     // ADDING ARCS

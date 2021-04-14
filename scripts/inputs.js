@@ -44,7 +44,7 @@ const btnClick = function() {
         return;
     }
 
-    pieRadius = vizDivWidth / 8;
+    pieRadius = vizDivWidth / 9;
     pieInnerRadius = pieRadius * 0.4;
     pieChart.update(getObjValuesAsArray(userInput, categories));
 
