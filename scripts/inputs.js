@@ -16,7 +16,7 @@ const generateUserControls = function(initialValues) {
     }
     inputsDiv.html(userInputHtml);
 
-    msgDiv.html(`Total = ${getUserInputTotal()}%`);
+    d3.select("h3#message").html(`&nbsp;<br/>Total = ${getUserInputTotal()}%`);
 }
 
 // TEXTBOX ONCHANGE LISTENER
@@ -27,19 +27,20 @@ const categoryInputChange = function(categoryName) {
     if (getUserInputTotal() > 100){
         userInput[categoryName] -= getUserInputTotal() - 100;
         d3.select(`#${categoryName}-input`).property('value', userInput[categoryName])
-        alert("Oops! You can't go beyond 100%");
+        d3.select("h3#message").html(`Oops! You can't go beyond 100%.<br/>Total = ${getUserInputTotal()}%`);
+        return;
     }
     pieChart.update(getObjValuesAsArray(userInput, categories));
 
     // UPDATE TOTAL
-    d3.select("h3#message").html(`Total = ${getUserInputTotal()}%`);
+    d3.select("h3#message").html(`&nbsp;<br/>Total = ${getUserInputTotal()}%`);
 }
 
 // BUTTON CLICK LISTENER
 const btnClick = function() {
 
     if (getUserInputTotal() != 100) {
-        d3.select("h3#message").html(`Sorry, but the total needs to add upto a 100%.<br/>Currently, it's at ${getUserInputTotal()}%.`);
+        d3.select("h3#message").html(`Sorry, but the total needs to add upto a 100%.<br/>Total = ${getUserInputTotal()}%`);
         return;
     }
 
@@ -67,7 +68,7 @@ const btnClick = function() {
     // DISABLE INPUTS
     d3.selectAll("input").attr("disabled", true);
     // INFORM REAGARDING INTERACTIVE FEATURES
-    d3.select("#message").html("Psst...You can click on the categories to find what they include! Click on the center to rest.");
+    d3.select("#message").html("Psst...You can click on the categories to find what they include! Click on the center to reset.");
 }
 
 const getSubTotal = (i) => {
