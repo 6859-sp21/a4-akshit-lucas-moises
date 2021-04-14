@@ -1,6 +1,8 @@
 
 # Economic Lives of the Indian Poor
 
+The visualiization works best on Google Chrome. It is not optimized for Safari. 
+
 # Motivation
 
 People's perceptions of those living in extreme poverty are often overly simplistic. A common image of the extremely poor is that they spend almost all of their incomes on food, and therefore have few consumption choices to make.
