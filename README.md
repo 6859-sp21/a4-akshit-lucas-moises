@@ -1,7 +1,7 @@
 
 # Economic Lives of the Indian Poor
 
-The visualiization works best on Google Chrome. It is not optimized for Safari. 
+The visualiization works best on Google Chrome.
 
 # Motivation
 
