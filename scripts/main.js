@@ -1,11 +1,11 @@
 const categories = [
-    "Food",
+    "Products",
     "Services",
+    "Food",
     "Household",
     "Leisure",
     "Housing",
-    "Luxury",
-    "Products"
+    "Luxury"
 ];
 const vizDivId = "viz-div";
 const fileLocation = "https://raw.githubusercontent.com/6859-sp21/a4-akshit-lucas-moises/main/datafile.csv";
