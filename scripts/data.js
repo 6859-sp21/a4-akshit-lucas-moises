@@ -2,7 +2,7 @@
 const getEmptyCategoriesWithValuesObj = function(categories) {
     var dataObj = {};
     for (var i=0; i<categories.length; i++) {
-        dataObj[categories[i]] = Math.round(100 / categories.length);
+        dataObj[categories[i]] = 10;
     }
     return dataObj;
 }

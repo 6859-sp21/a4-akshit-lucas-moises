@@ -62,8 +62,12 @@ const btnClick = function() {
 
     // SHOW SUNBURST
     SunBurst(consumptionVizData);
-    d3.select("button").attr("disabled", true);
+    // HIDE BUTTON
+    d3.select("button").style("display", "none");
+    // DISABLE INPUTS
     d3.selectAll("input").attr("disabled", true);
+    // INFORM REAGARDING INTERACTIVE FEATURES
+    d3.select("#message").html("Psst...You can click on the categories to find what they include! Click on the center to rest.");
 }
 
 const getSubTotal = (i) => {
