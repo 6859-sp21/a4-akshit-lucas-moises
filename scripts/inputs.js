@@ -2,7 +2,7 @@
 const generateUserControls = function(initialValues) {
     
     const inputsDiv = d3.select("#user-input");
-    const btnDiv = d3.select("#user-btn");
+    const msgDiv = d3.select("#message");
     
     var userInputHtml = "";
     for (var i=0; i<categories.length; i++) {
@@ -11,10 +11,12 @@ const generateUserControls = function(initialValues) {
         userInputHtml += `${categoryName} = `;
         userInputHtml += `</label>`;
         userInputHtml += `<div class="textinput"><input min="0" max="100" type="number" step="5" id="${categoryName}-input" value="${initialValues[categoryName]}"`;
-        userInputHtml += `onchange="categoryInputChange('${categoryName}');">%</input></div>`;
+        userInputHtml += `onchange="categoryInputChange('${categoryName}');"> %</input></div>`;
         userInputHtml += `</div>`;
     }
     inputsDiv.html(userInputHtml);
+
+    msgDiv.html(`Total = ${getUserInputTotal()}%`);
 }
 
 // TEXTBOX ONCHANGE LISTENER

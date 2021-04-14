@@ -4,7 +4,6 @@ const categories = [
     "Household",
     "Leisure",
     "Housing",
-    "Taxes-Fees",
     "Luxury",
     "Products"
 ];
