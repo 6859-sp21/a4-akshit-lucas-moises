@@ -1,0 +1,53 @@
+variable,mean,category_1
+Edible oil,25.23719132,Food
+Eggs,228.5725774,Food
+Milk,44.6566003,Food
+Milk products,43.80512976,Food
+Vegetables,317.4644978,Food
+Salt/spices,127.4363339,Food
+Other Food,48.18667311,Food
+Processed foods,41.86838899,Food
+Paan/tobac/intox,92.43485381,Leisure
+Fruits/nuts,39.65412859,Food
+Rice,404.3926177,Food
+Eating out,21.02833997,Leisure
+HH Fuel,220.8448418,Household
+HH Electricity,76.75625831,Services
+Entertainment,2.472254907,Leisure
+"Phone, TV, internet",69.09459935,Services
+Cosmetics articles,66.33759312,Household
+Household items,11.71619641,Household
+"Soap, detergent, etc.",95.44487999,Household
+Transportation,109.4817902,Services
+Diesel/petrol,22.86228949,Household
+Wheat,205.7967731,Food
+House rent,11.1058406,Housing
+Consumer taxes,1.226809273,Housing
+Services servants,3.36681674,Luxury
+Medical out-patient,15.92693299,Services
+Medical in-patient,103.6585368,Services
+School,51.07357809,Services
+Private tuition fees,20.03952641,Services
+School books,56.62957399,Services
+Clothing/bedding,164.0653699,Clothing
+Footwear,44.80466836,Clothing
+Sugar,91.68446564,Food
+Furniture/fixtures,3.362736902,Household
+Crockery/utensils,8.30469617,Household
+Household appliances,1.569966813,Household
+Recreation goods,3.041964866,Leisure
+Jewellery,5.63236983,Luxury
+Transport equipment,14.00100613,Services
+Therapeutic appliances,1.307523649,Services
+Personal care,5.745492787,Products
+Other personal,9.847094662,Products
+Repair/maintenance,12.11169865,Services
+Kerosene,54.16763438,Food
+Insurance premiums,15.83598108,Services
+Vacations,5.163001022,Leisure
+Social functions,100.3455244,Leisure
+Other cereals,35.38721149,Food
+Cereal products,159.3835101,Food
+Pulses,177.7047995,Food
+Meat,29.2860461,Food
+Sweeteners,217.9818739,Food

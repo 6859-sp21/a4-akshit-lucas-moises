@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+           html, body {
+                height: 100%;
+                font-family: baskerville;
+            }
+            div.outer {
+                min-width: 700px;
+                height: 100%;
+            }
+            div.questions {
+                background-color: #dbffe5;
+                padding: 0px 32px;
+                box-shadow: 0px 0px 12px 6px #eee;
+                text-align: center;
+                width: 40%;
+                float: left;
+                height: 98%;
+                border-radius: 32px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+            }
+            div.visualizations {
+                width: 50%;
+                float: right;
+                box-shadow: 0px 0px 12px 6px #eee;
+                height: 98%;
+                border-radius: 32px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .column-center {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .row-center {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .label {
+                display: inline-block; 
+                width: 160px; 
+                text-align: left
+            }
+            div.smiley {
+                text-align: center;
+                display: none;
+            }
+            .bottom {
+                background: #9e978e;
+                display: inline-block;
+                margin: 0 1em 1em 0;
+                width: 100;
+                height: 50px;;
+                width: 100px;
+                border-bottom-left-radius: 100px;
+                border-bottom-right-radius: 100px;
+            }
+            div.categoryInput {
+                line-height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            div.categoryInput > input {
+                width: 50px;
+                text-align: center;
+            }
+            button {
+                font-family: Hack, monospace;
+                background: #0F0F6D;
+                color: #ffffff;
+                cursor: pointer;
+                padding: 1.5rem;
+                border: 0;
+                transition: all 0.5s;
+                border-radius: 10px;
+                width: auto;
+                position: relative;
+            }
+            button::after {
+                content: "\23E9";
+                font-family: "Font Awesome 5 Pro";
+                font-weight: 400;
+                position: absolute;
+                left: 85%;
+                top: 31%;
+                right: 5%;
+                bottom: 0;
+                opacity: 0;
+
+            }
+
+            button:hover {
+                background: #2b2bff;
+                transition: all 0.5s;
+                border-radius: 10px;
+                box-shadow: 0px 6px 15px #0000ff61;
+                padding: 1.5rem 3.5rem 1.5rem 1.5rem;
+            }
+            button:hover::after {
+                opacity: 1;
+                transition: all 0.5s;
+
+            }
+            .textinput {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+            .difference {
+                margin: 0px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="content questions">
+                <h1> How do Indian poor* spend their money?</h1>
+                <h2>Make a guess!</h2>
+                <p>* Indian poor = Indian population living under national poverty line in 2011-12</p>
+                
+                <div id="user-input"></div>
+                <h3 id="message"></h3>
+                <button onclick='btnClick()'>Click to find reality!</button>
+
+                <p><b>Sources</b>: <a href="https://ihds.umd.edu/data" target="_blank">The India Human Development Survey-II (IHDS-II), 2011-12</a></p>
+
+            </div>
+            <div class="content visualizations">
+                <div id="viz-div"></div>
+            </div>
+        </div>
+    </body>
+    
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    
+    <script type="text/javascript" src="scripts/data.js"></script>
+    <script type="text/javascript" src="scripts/inputs.js"></script>
+    <script type="text/javascript" src="scripts/pie.js"></script>
+    <script type="text/javascript" src="scripts/sunburst.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+</html>
